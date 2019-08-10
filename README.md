@@ -13,4 +13,5 @@ Test framework for assignments in the Big Data course (UE17CS313).
 * Use `git add .` `git commit -m "message" ` and `` git push origin `branch_name` `` to commit and push.
 * Check with other teammates before merging
 
+* **ADHERE TO PEP8 GUIDELINES FOR ANY CODE THATS WRITTEN**
 ## Running the project
