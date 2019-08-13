@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'api'
 urlpatterns = [
-    path('', views.code_upload)
+    path('', views.CodeUpload.as_view())
 ]

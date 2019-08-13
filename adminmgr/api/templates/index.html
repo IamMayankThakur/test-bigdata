@@ -4,7 +4,9 @@
 {% block content %}
   <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="myfile">
+    <input type="text" name="email">
+    <input type="number" name="assignno">
+    <input type="file" name="code_file">
     <input type="submit" value="upload">
   </form>
 
