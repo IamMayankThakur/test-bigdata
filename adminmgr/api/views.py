@@ -11,8 +11,6 @@ class CodeUpload(View):
         return render(request, 'index.html')
 
     def post(self, request):
-        print(request.POST)
-        print(request.FILES)
         email = request.POST["email"]
         code_file = request.FILES["code_file"]
         assign_no = request.POST['assignno']
