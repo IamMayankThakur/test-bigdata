@@ -15,17 +15,16 @@ class RandomSentenceGenerator:
 
 class OutputFileStream:
     def dump(self,data,absolute_path):
-        fp = open(absolute_path,'w')
+        fp = open(absolute_path,'a')
         fp.write(data)
 
 def main():
     random_sentence_generator = RandomSentenceGenerator()
     output_file_stream = OutputFileStream()
-    for i in range(10000):
-        output_file_stream.dump(random_sentence_generator.generate_sentence(5000),"Inputs/ip-"+str(i)+".txt")
+    for i in range(150):
+        output_file_stream.dump(random_sentence_generator.generate_sentence(100000),"../../Inputs/ip-"+str(1)+".txt")
 
 main()
-
 
 
 
