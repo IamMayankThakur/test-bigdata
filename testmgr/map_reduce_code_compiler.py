@@ -5,7 +5,7 @@ class MapReduceCodeCompiler:
     _hadoop_client_core_jar_path = """/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.2.jar"""
     _hadoop_client_common_cli_jar_path = """/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar"""
     _base_command = "javac -classpath"
-    def compile_code(self,path):
+    def compile_code(self, path):
         destination_class_files_path = ("/".join(path.split("/")[:-1]) 
                                         + "/ClassFiles")
         os.mkdir(destination_class_files_path)
