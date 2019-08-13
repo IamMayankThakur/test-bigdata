@@ -15,4 +15,4 @@ class JarFileGenerator:
     obj.generate_jar("/home/hduser/Desktop/WordCountF/ClassFiles", 
                      "/home/hduser/Desktop/WordCountF",
                      "WordCountJ")
-test()'''
+test()'''s
