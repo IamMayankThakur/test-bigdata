@@ -4,6 +4,7 @@ from django.views import View
 
 from .models import Submission
 from .models import Team
+from .utils import run
 
 
 class CodeUpload(View):
@@ -18,4 +19,5 @@ class CodeUpload(View):
         # TODO: Check email for all members not only 1
         submission = Submission(team=team, assignment_no=assign_no, code_file=code_file)
         submission.save()
+        run(submission.id)
         return HttpResponse("Done. You will receive your results via an email")
