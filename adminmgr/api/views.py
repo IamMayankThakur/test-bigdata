@@ -12,12 +12,11 @@ class CodeUpload(View):
         return render(request, 'index.html')
 
     def post(self, request):
-        email = request.POST["email"]
+        t_name = request.POST["team_name"]
         code_file = request.FILES["code_file"]
         assign_no = request.POST['assignno']
-        team = Team.objects.get(member_1=email)
-        # TODO: Check email for all members not only 1
+        team = Team.objects.get(team_name=t_name)
         submission = Submission(team=team, assignment_no=assign_no, code_file=code_file)
         submission.save()
-        run(submission.id)
+        run.apply_async([submission.id])
         return HttpResponse("Done. You will receive your results via an email")
