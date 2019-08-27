@@ -1,6 +1,6 @@
 import os
 
-class MapReduceCodeCompiler:
+class JavaMapReduceCodeCompiler:
     _hadoop_common_jar_path = """/usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.2.jar"""
     _hadoop_client_core_jar_path = """/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.2.jar"""
     _hadoop_client_common_cli_jar_path = """/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar"""

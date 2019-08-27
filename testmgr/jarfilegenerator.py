@@ -1,6 +1,6 @@
 import os
 
-class JarFileGenerator:
+class JavaJarFileGenerator:
     _base_command = "jar -cvf "
     def generate_jar(self, class_dir_path, destination_jar_path, name_of_jar):
         command = (self._base_command + " "
