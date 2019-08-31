@@ -11,7 +11,7 @@ from .utils import run
 # noinspection PyMethodMayBeStatic
 class CodeUpload(View):
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'assignment1.html')
 
     def post(self, request):
         try:

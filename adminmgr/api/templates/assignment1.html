@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        p.a {
+            position: relative;
+            top: 10px;
+            font-size: 45px;
+        }
+
+        p.b {
+            position: relative;
+            top: 0px;
+            font-size: 30px;
+        }
+
+        div.c {
+            position: relative;
+            top: 40px;
+        }
+
+        input[type="text"]::placeholder {
+            text-align: center;
+        }
+
+        input[type="radio"] {
+            position: relative;
+            top: 4px;
+            display: inline-block;
+        }
+
+        div.d {
+            position: relative;
+            top: 40px;
+        }
+
+        p.demo {
+            padding-left: 10%;
+            padding-top: 10%;
+        }
+    </style>
+    <script type="text/javascript">
+        function Python() {
+            'use strict';
+            var s = "";
+            var i, target = document.getElementById("demo");
+            target.innerHTML = '';
+            target.innerHTML += '<br>';
+            target.innerHTML += "Task 1";
+            target.innerHTML +=
+                '<br><br>Mapper  : <input type="file" label="Mapper1" 					name="code_file_python_map_1"><br>';
+            target.innerHTML +=
+                'Reducer : <input type="file" label="Reducer1" 						name="code_file_python_reduce_1"><br><br>';
+            target.innerHTML += "Task 2";
+            target.innerHTML +=
+                '<br><br> Mapper  :  <input type="file" label="Mapper2" 					name="code_file_python_map_2"><br>';
+            target.innerHTML +=
+                'Reducer : <input type="file" label="Reducer2" 						name="code_file_python_reduce_2"><br><br>';
+            target.innerHTML += "Task 3";
+            target.innerHTML +=
+                '<br><br> Mapper  :  <input type="file" label="Mapper3" 					name="code_file_python_map_3"><br>';
+            target.innerHTML +=
+                'Reducer : <input type="file" label="Reducer3" 						name="code_file_python_reduce_3"><br><br><br>';
+        }
+
+        function Java() {
+            'use strict';
+            var s = "";
+            var i, target = document.getElementById("demo");
+            target.innerHTML = '';
+            target.innerHTML += '<br>';
+            target.innerHTML += "Task 1";
+            target.innerHTML +=
+                '<br><br>Java file 1 : <input type="file" label="Task1" 					name="code_file_java_task_1"><br><br>';
+            target.innerHTML += "Task 2";
+            target.innerHTML +=
+                '<br><br>Java file 2 : <input type="file" label="Task2" 					name="code_file_java_task_2"><br><br>';
+            target.innerHTML += "Task 3";
+            target.innerHTML +=
+                '<br><br>Java file 3 : <input type="file" label="Task3" 					name="code_file_java_task_3"><br><br><br>';
+
+        }
+    </script>
+</head>
+
+<body>
+<b>
+    <p align="center" class="a"> Assignment 1 </p>
+    <p align="center" class="b"> Map Reduce </p>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div align="center" class="c">
+            <input type="text" name="team_name" placeholder="Enter team name here"></input>
+            <div align="center" class="d">
+                <b>Python</b><input type="radio" name="python_or_java" id="py" value="python"
+                                    onclick="Python()"></input>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Java<input type="radio" name="python_or_java" onclick="Java()" value="java"></input><br><br><br>
+                Replication Number File : <input type="file" name="code_config"></input>
+                <p id="demo"></p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
