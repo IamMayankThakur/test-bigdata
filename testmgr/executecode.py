@@ -4,7 +4,7 @@ from hdfs import InsecureClient
 from mapreducecodecompiler import java_map_reduce_compile
 from jarfilegenerator import java_jar_file_generator
 from mapreduceexecutor import java_map_reduce_execute
-from testoutput import TestOutput
+from testoutput import test
 from config import *
 
 def download_file(hdfs_output_path, path, test_case_number):
@@ -38,6 +38,7 @@ def process_java(path_to_code, team_name):
             pass
     
     if(java_map_reduce_compile(path_to_code, team_folder_path) == False):
+        
         return None
     print("[TEST-COMPONENT-LOG]["+team_name+"] COMPILATION SUCCESSFUL")
     
@@ -77,10 +78,9 @@ def execute_java(path_to_code, team_folder_path, test_case_number):
     download_file(HADOOP_OUTPUT_PATH, team_folder_path, test_case_number)
     return os.path.join(team_folder_path, test_case_number, "part-r-00000")      
                    
-def test():
-    obj_2 = TestOutput()
+def exe():
     output_paths = java_execute_test_cases(os.path.join(CODE_BASE_PATH, 'Code_' + str(1), "WordCount.java"),'1')
     print(output_paths)
-    correctness = obj_2.test(output_paths)
+    correctness = test(output_paths)
 
-test()
+exe()
