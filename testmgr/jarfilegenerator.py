@@ -1,17 +1,18 @@
 import os
 
+
 def java_jar_file_generator(class_dir_path, destination_jar_path, name_of_jar):
     base_command = "jar -cvf "
-    full_command =(base_command + " " 
-                   + destination_jar_path + "/"
-                   + name_of_jar + ".jar " + "-C "
-                   + class_dir_path + " .")
+    full_command = (base_command + " "
+                    + destination_jar_path + "/"
+                    + name_of_jar + ".jar " + "-C "
+                    + class_dir_path + " .")
     print(full_command)
     try:
         os.system(full_command)
     except:
         print("Error executing jar")
-                 
+
 
 '''class JavaJarFileGenerator:
     _base_command = "jar -cvf "

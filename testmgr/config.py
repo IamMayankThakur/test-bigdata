@@ -7,9 +7,9 @@ HADOOP_STREAMING_BASE_PATH = "/usr/local/hadoop/share/hadoop/tools/lib/hadoop-st
 HADOOP_OUTPUT_PATH = "/output_word"
 SETTERS_OUTPUT_BASE_PATH = "/home/ubuntu/test-bigdata/expected/Outputs"
 
-TEST_CASES = 2
+TEST_CASES = 1
 
-#PATH =/home/hduser/Desktop/BigData/Teams/1
+# PATH =/home/hduser/Desktop/BigData/Teams/1
 
-#PATH =/home/hduser/Desktop/BigData/Teams-Python/1/1
-#PATH =/home/hduser/Desktop/BigData/Teams/1/2
+# PATH =/home/hduser/Desktop/BigData/Teams-Python/1/1
+# PATH =/home/hduser/Desktop/BigData/Teams/1/2
