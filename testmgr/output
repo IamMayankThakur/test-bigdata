@@ -1,0 +1,18 @@
+added manifest
+adding: WordCount$TokenizerMapper.class(in = 1736) (out= 754)(deflated 56%)
+adding: WordCount$IntSumReducer.class(in = 1739) (out= 739)(deflated 57%)
+adding: WordCount.class(in = 1491) (out= 814)(deflated 45%)
+Created team folder
+Created classfiles directory
+[TEST-COMPONENT-LOG][1] COMPILATION SUCCESSFUL
+jar -cvf  /home/hduser/Desktop/BigData/Teams/1/WordCountJ.jar -C /home/hduser/Desktop/BigData/Teams/1/ClassFiles .
+[TEST-COMPONENT-LOG][/1] JAR FILE CREATED
+java map reduce execution successful
+[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL
+java map reduce execution successful
+[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL
+['/home/hduser/Desktop/BigData/Teams/1/1/part-r-00000', '/home/hduser/Desktop/BigData/Teams/1/2/part-r-00000']
+/home/hduser/Desktop/BigData/Teams/1/1/part-r-00000
+TEST CASE 1 PASSED
+/home/hduser/Desktop/BigData/Teams/1/2/part-r-00000
+TEST CASE 2 PASSED
