@@ -1,9 +1,9 @@
 import os
+import errno
 from hdfs import InsecureClient
 from mapreducecodecompiler import java_map_reduce_compile
 from jarfilegenerator import java_jar_file_generator
 from mapreduceexecutor import java_map_reduce_execute
-from mapreduceexecutor import PythonMapReduceExecutor
 from testoutput import TestOutput
 from config import *
 
@@ -31,9 +31,12 @@ def process_java(path_to_code, team_name):
     try:
         os.mkdir(team_folder_path)
         print("Created team folder")
-    except Exception as e:
-        print("Error creating team folder")
-        print(e)
+    except OSError as e:
+        if(e.errno != errno.EEXIST):
+            return None
+        else:
+            pass
+    
     if(java_map_reduce_compile(path_to_code, team_folder_path) == False):
         return None
     print("[TEST-COMPONENT-LOG]["+team_name+"] COMPILATION SUCCESSFUL")
@@ -73,30 +76,11 @@ def execute_java(path_to_code, team_folder_path, test_case_number):
     
     download_file(HADOOP_OUTPUT_PATH, team_folder_path, test_case_number)
     return os.path.join(team_folder_path, test_case_number, "part-r-00000")      
-        
-def execute_python(path_to_mapper, path_to_reducer, team_name, test_case_number):
-    team_folder_path = create_team_folder(team_name)
-    obj_1 = PythonMapReduceExecutor()
-    obj_1.execute(path_to_mapper, path_to_reducer, "/Test_Case_" + str(test_case_number), HADOOP_OUTPUT_PATH)
-    download_file(HADOOP_OUTPUT_PATH, team_folder_path, test_case_number)
-    return os.path.join(team_folder_path, test_case_number, "part-00000")
-        
-        
-            
-            
-            
-            
-
-             
-            
+                   
 def test():
     obj_2 = TestOutput()
     output_paths = java_execute_test_cases(os.path.join(CODE_BASE_PATH, 'Code_' + str(1), "WordCount.java"),'1')
     print(output_paths)
     correctness = obj_2.test(output_paths)
-    '''output_paths = obj_1.python_execute_test_cases("/home/hduser/Desktop/WordCountF/Code_1_Python/mapper.py",
-                                                   "/home/hduser/Desktop/WordCountF/Code_1_Python/reducer.py",'1')
-    print(output_paths)
-    correctness = obj_2.test(output_paths)'''
 
 test()
