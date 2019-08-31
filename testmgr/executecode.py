@@ -6,6 +6,10 @@ from jarfilegenerator import java_jar_file_generator
 from mapreduceexecutor import java_map_reduce_execute
 from testoutput import test
 from config import *
+import sys
+sys.path.append("../")
+
+from adminmgr.api.models import Team, SubmissionAssignmentOne
 
 def download_file(hdfs_output_path, path, test_case_number):
     try:
@@ -78,9 +82,22 @@ def execute_java(path_to_code, team_folder_path, test_case_number):
     download_file(HADOOP_OUTPUT_PATH, team_folder_path, test_case_number)
     return os.path.join(team_folder_path, test_case_number, "part-r-00000")      
                    
-def exe():
-    output_paths = java_execute_test_cases(os.path.join(CODE_BASE_PATH, 'Code_' + str(1), "WordCount.java"),'1')
+def exe(submission_id):
+    
+    #if python: 
+    #else:
+    submission = SubmissionAssignmentOne.objects.get(id = submission_id)
+
+    output_paths = java_execute_test_cases(submission.code_file_java_task_1, submission.team.team_name)
     print(output_paths)
     correctness = test(output_paths)
+
+    #output_paths = java_execute_test_cases(submission.code_file_java_task_2, submission.team.team_name)
+    #print(output_paths)
+    #correctness = test(output_paths)
+
+    #output_paths = java_execute_test_cases(submission.code_file_java_task_3, submission.team.team_name)
+    #print(output_paths)
+    #correctness = test(output_paths)
 
 exe()
