@@ -1,16 +1,14 @@
 import errno
 import os
-import sys
 
 from hdfs import InsecureClient
 
+from api.models import SubmissionAssignmentOne
 from .config import *
 from .jarfilegenerator import java_jar_file_generator
 from .mapreducecodecompiler import java_map_reduce_compile
 from .mapreduceexecutor import java_map_reduce_execute
 from .testoutput import test
-
-from api.models import SubmissionAssignmentOne
 
 
 def download_file(hdfs_output_path, path, test_case_number):
@@ -39,12 +37,12 @@ def process_java(path_to_code, team_name):
         os.mkdir(team_folder_path)
         print("Created team folder")
     except OSError as e:
-        if (e.errno != errno.EEXIST):
+        if e.errno != errno.EEXIST:
             return None
         else:
             pass
 
-    if (java_map_reduce_compile(path_to_code, team_folder_path) == False):
+    if not java_map_reduce_compile(path_to_code, team_folder_path):
         return None
     print("[TEST-COMPONENT-LOG][" + team_name + "] COMPILATION SUCCESSFUL")
 
@@ -57,7 +55,7 @@ def process_java(path_to_code, team_name):
 
 def java_execute_test_cases(path_to_code, team_name):
     team_folder_path = process_java(path_to_code, team_name)
-    if (team_folder_path == None):
+    if team_folder_path is None:
         print("Processing java code failed")
         return False
     output_paths = []

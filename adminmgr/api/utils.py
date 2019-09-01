@@ -1,12 +1,8 @@
-import sys
-
 from celery import shared_task
 
-# sys.path.append('../')
-
 from notifymgr.mail import send_mail
-from .models import SubmissionAssignmentOne
 from testmgr.executecode import exe
+from .models import SubmissionAssignmentOne
 
 
 @shared_task
