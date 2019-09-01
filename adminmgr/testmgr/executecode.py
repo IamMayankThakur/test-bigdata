@@ -11,7 +11,7 @@ from .mapreduceexecutor import java_map_reduce_execute
 from .testoutput import test
 
 
-def download_file(hdfs_output_path, path, test_case_number):
+def download_file(path, test_case_number):
     try:
         client = InsecureClient(('http://'
                                  + HADOOP_HOST_NAME + ':'
@@ -82,7 +82,7 @@ def execute_java(path_to_code, team_folder_path, test_case_number):
         return None
     print("[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL")
 
-    download_file(HADOOP_OUTPUT_PATH, team_folder_path, test_case_number)
+    download_file(team_folder_path, test_case_number)
     return os.path.join(team_folder_path, test_case_number, "part-r-00000")
 
 
