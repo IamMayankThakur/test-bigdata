@@ -10,9 +10,11 @@ from .mapreducecodecompiler import java_map_reduce_compile
 from .mapreduceexecutor import java_map_reduce_execute
 from .testoutput import test
 
-sys.path.append("../")
-
-from adminmgr.api.models import SubmissionAssignmentOne
+# sys.path.append("")
+# sys.path.insert(0, os.path.abspath('..'))
+# sys.path.append(".")
+print(sys.path)
+from ..adminmgr.api.models import SubmissionAssignmentOne
 
 
 def download_file(hdfs_output_path, path, test_case_number):
