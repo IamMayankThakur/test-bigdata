@@ -3,7 +3,7 @@ import os
 from .config import *
 
 
-def test(output_paths):
+def test(output_paths, task_number):
     correctness = []
     for output_path in output_paths:
         if (output_path == None):
@@ -12,7 +12,7 @@ def test(output_paths):
         print(output_path)
         test_case = output_paths.index(output_path) + 1
         correctness.append(check_test_case(output_path,
-                                           (os.path.join(SETTERS_OUTPUT_BASE_PATH,
+                                           (os.path.join(SETTERS_OUTPUT_BASE_PATH, task_number,
                                                          str(test_case) + ".txt")), str(test_case)))
 
 
