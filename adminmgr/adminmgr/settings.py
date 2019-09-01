@@ -25,7 +25,7 @@ SECRET_KEY = '_9q9_83qp5n04wm^%p*wv0vjre2n-&a3x93$ve@t__45#qq8s*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-100-25-57-177.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['ec2-100-25-57-177.compute-1.amazonaws.com', '0.0.0.0']
 
 
 # Application definition
@@ -121,6 +121,7 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
