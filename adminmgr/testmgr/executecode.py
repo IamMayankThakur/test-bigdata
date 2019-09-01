@@ -10,11 +10,7 @@ from .mapreducecodecompiler import java_map_reduce_compile
 from .mapreduceexecutor import java_map_reduce_execute
 from .testoutput import test
 
-# sys.path.append("")
-# sys.path.insert(0, os.path.abspath('..'))
-# sys.path.append(".")
-print(sys.path)
-from ..adminmgr.api.models import SubmissionAssignmentOne
+from api.models import SubmissionAssignmentOne
 
 
 def download_file(hdfs_output_path, path, test_case_number):
@@ -109,6 +105,5 @@ def exe(submission_id):
     # output_paths = java_execute_test_cases(submission.code_file_java_task_3, submission.team.team_name)
     # print(output_paths)
     # correctness = test(output_paths)
-
 
 # exe()

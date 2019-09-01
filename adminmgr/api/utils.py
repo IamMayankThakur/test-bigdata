@@ -2,7 +2,7 @@ import sys
 
 from celery import shared_task
 
-sys.path.append('../')
+# sys.path.append('../')
 
 from notifymgr.mail import send_mail
 from .models import SubmissionAssignmentOne
