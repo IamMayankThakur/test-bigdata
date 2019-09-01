@@ -8,6 +8,9 @@ class Team(models.Model):
     member_3 = models.CharField(max_length=128, unique=True, blank=True)
     member_4 = models.CharField(max_length=128, unique=True, blank=True)
 
+    def __str__(self):
+        return self.team_name
+
 
 class SubmissionAssignmentOne(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -30,3 +33,6 @@ class SubmissionAssignmentOne(models.Model):
     score_4 = models.IntegerField(default=-1)
     remarks = models.TextField(null=True, blank=True, default="None")
     output = models.TextField(null=True, blank=True, default="None")
+
+    def __str__(self):
+        return str(self.id)

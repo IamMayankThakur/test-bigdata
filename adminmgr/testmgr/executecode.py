@@ -92,9 +92,16 @@ def exe(submission_id):
     # else:
     submission = SubmissionAssignmentOne.objects.get(id=submission_id)
 
-    output_paths = java_execute_test_cases(submission.code_file_java_task_1, submission.team.team_name)
+    output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
     print(output_paths)
-    correctness = test(output_paths, '1')
+    try:
+        if output_paths is False:
+            correctness = False
+        else:
+            correctness = test(output_paths, '1')
+
+    except Exception as e:
+        print(e)
 
     # output_paths = java_execute_test_cases(submission.code_file_java_task_2, submission.team.team_name)
     # print(output_paths)
