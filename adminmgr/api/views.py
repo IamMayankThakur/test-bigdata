@@ -19,15 +19,26 @@ class CodeUpload(View):
             python = True if request.POST["python_or_java"] == "python" else False
             java = True if request.POST["python_or_java"] == "java" else False
             code_config = request.FILES["code_config"]
-            code_file_java_task_1 = request.FILES["code_file_java_task_1"]
-            code_file_java_task_2 = request.FILES["code_file_java_task_2"]
-            code_file_java_task_3 = request.FILES["code_file_java_task_3"]
-            code_file_python_map_1 = request.FILES["code_file_python_map_1"]
-            code_file_python_map_2 = request.FILES["code_file_python_map_2"]
-            code_file_python_map_3 = request.FILES["code_file_python_map_3"]
-            code_file_python_reduce_1 = request.FILES["code_file_python_reduce_1"]
-            code_file_python_reduce_2 = request.FILES["code_file_python_reduce_2"]
-            code_file_python_reduce_3 = request.FILES["code_file_python_reduce_3"]
+            if java:
+                code_file_java_task_1 = request.FILES["code_file_java_task_1"]
+                code_file_java_task_2 = request.FILES["code_file_java_task_2"]
+                code_file_java_task_3 = request.FILES["code_file_java_task_3"]
+                code_file_python_map_1 = None
+                code_file_python_map_2 = None
+                code_file_python_map_3 = None
+                code_file_python_reduce_1 = None
+                code_file_python_reduce_2 = None
+                code_file_python_reduce_3 = None
+            if python:
+                code_file_python_map_1 = request.FILES["code_file_python_map_1"]
+                code_file_python_map_2 = request.FILES["code_file_python_map_2"]
+                code_file_python_map_3 = request.FILES["code_file_python_map_3"]
+                code_file_python_reduce_1 = request.FILES["code_file_python_reduce_1"]
+                code_file_python_reduce_2 = request.FILES["code_file_python_reduce_2"]
+                code_file_python_reduce_3 = request.FILES["code_file_python_reduce_3"]
+                code_file_java_task_1 = None
+                code_file_java_task_2 = None
+                code_file_java_task_3 = None
         except IndexError as e:
             return HttpResponse("Unable to accept submission. Enter valid details")
         try:
@@ -58,5 +69,5 @@ class CodeUpload(View):
         except Exception as e:
             return HttpResponse("Cannot add submission to queue. Contact any TA for resolution")
         return HttpResponse(
-            "Done. You will receive your results via an email. The submission id is " + submission.id
+            "Done. You will receive your results via an email. The submission id is " + str(submission.id)
             + ". Use this submission id to get in touch in case you dont get an email result.")
