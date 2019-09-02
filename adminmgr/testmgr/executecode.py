@@ -121,15 +121,15 @@ def exe(submission_id):
             mail_message_1 += "compilation error for task\n"
         elif (output_paths == -3):
             mail_message_1 += "jar file generation issue\n"
-        else:
-            correctness = test(output_paths, '1')
-            for i in range(len(correctness)):
-                mail_message_1 += "Test case " + str(i) + " "
-                if (correctness[i] == 1):
-                    mail_message_1 += "Passed\n"
-                    score_1 += 1
-                else:
-                    mail_message_1 += "Failed\n"
+        # else:
+        #     correctness = test(output_paths, '1')
+        #     for i in range(len(correctness)):
+        #         mail_message_1 += "Test case " + str(i) + " "
+        #         if (correctness[i] == 1):
+        #             mail_message_1 += "Passed\n"
+        #             score_1 += 1
+        #         else:
+        #             mail_message_1 += "Failed\n"
 
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         if (output_paths == -1):
@@ -138,15 +138,15 @@ def exe(submission_id):
             mail_message_2 += "compilation error"
         elif (output_paths == -3):
             mail_message_2 += "jar file generation error"
-        else:
-            correctness = test(output_paths, '1')
-            for i in range(len(correctness)):
-                mail_message_2 += "Test case " + str(i) + " "
-                if (correctness[i] == 1):
-                    mail_message_2 += "Passed\n"
-                    score_2 += 1
-                else:
-                    mail_message_2 += "Failed\n"
+        # else:
+        #     correctness = test(output_paths, '1')
+        #     for i in range(len(correctness)):
+        #         mail_message_2 += "Test case " + str(i) + " "
+        #         if (correctness[i] == 1):
+        #             mail_message_2 += "Passed\n"
+        #             score_2 += 1
+        #         else:
+        #             mail_message_2 += "Failed\n"
 
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         print(output_paths)
@@ -156,15 +156,16 @@ def exe(submission_id):
             mail_message_3 += "compilation error for task"
         elif (output_paths == -3):
             mail_message_3 += "jar file generation issue"
-        else:
-            correctness = test(output_paths, '1')
-            for i in range(len(correctness)):
-                mail_message_3 += "Test case " + str(i) + " "
-                if (correctness[i] == 1):
-                    mail_message_3 += "Passed\n"
-                    score_3 += 1
-                else:
-                    mail_message_3 += "Failed\n"
+        # else:
+        #     correctness = test(output_paths, '1')
+        #     for i in range(len(correctness)):
+        #         mail_message_3 += "Test case " + str(i) + " "
+        #         if (correctness[i] == 1):
+        #             mail_message_3 += "Passed\n"
+        #             score_3 += 1
+        #         else:
+        #             mail_message_3 += "Failed\n"
+        
     if submission.python:
         output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         if (output_paths[0] == False):
