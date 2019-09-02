@@ -56,9 +56,10 @@ def process_java(path_to_code, team_name):
 
 def java_execute_test_cases(path_to_code, team_name):
     team_folder_path = process_java(path_to_code, team_name)
-    if isinstance(team_folder_path, int) and team_folder_path < 0:
-        print("Processing java code failed")
-        return team_folder_path
+    if isinstance(team_folder_path, int):
+        if team_folder_path < 0:
+            print("Processing java code failed")
+            return team_folder_path
     output_paths = []
     for test_case in range(1, TEST_CASES + 1):
         output_paths.append(execute_java(path_to_code, team_folder_path, str(test_case)))
