@@ -91,24 +91,37 @@ def exe(submission_id):
     # if python:
     # else:
     submission = SubmissionAssignmentOne.objects.get(id=submission_id)
+    if submission.python:
+        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '1')
 
-    output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-    print(output_paths)
-    try:
-        if output_paths is False:
-            correctness = False
-        else:
-            correctness = test(output_paths, '1')
+        except Exception as e:
+            print(e)
 
-    except Exception as e:
-        print(e)
+        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '2')
 
-    # output_paths = java_execute_test_cases(submission.code_file_java_task_2, submission.team.team_name)
-    # print(output_paths)
-    # correctness = test(output_paths)
+        except Exception as e:
+            print(e)
 
-    # output_paths = java_execute_test_cases(submission.code_file_java_task_3, submission.team.team_name)
-    # print(output_paths)
-    # correctness = test(output_paths)
+        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '3')
 
-# exe()
+        except Exception as e:
+            print(e)
+

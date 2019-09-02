@@ -44,7 +44,9 @@ class CodeUpload(View):
         try:
             team = Team.objects.get(team_name=t_name)
         except ObjectDoesNotExist as e:
-            return HttpResponse("Team doesnt exist. Enter the team name submitted in the project form.")
+            return HttpResponse(
+                "Team doesnt exist. Enter the team name submitted in the project form. If you dont remember your"
+                + " team name, contact mayankthakur@pesu.pes.edu or any faculty immediately")
         try:
             submission = SubmissionAssignmentOne(
                 team=team,
