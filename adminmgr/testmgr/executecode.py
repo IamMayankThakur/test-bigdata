@@ -38,26 +38,26 @@ def process_java(path_to_code, team_name):
         print("Created team folder")
     except OSError as e:
         if e.errno != errno.EEXIST:
-            return None
+            return -1
         else:
             pass
 
     if not java_map_reduce_compile(path_to_code, team_folder_path):
-        return None
+        return -2
     print("[TEST-COMPONENT-LOG][" + team_name + "] COMPILATION SUCCESSFUL")
 
     if (java_jar_file_generator(os.path.join(team_folder_path, "ClassFiles"),
                                 team_folder_path, "WordCountJ") == False):
-        return None
+        return -3
     print("[TEST-COMPONENT-LOG][" + "/" + team_name + "] JAR FILE CREATED")
     return team_folder_path
 
 
 def java_execute_test_cases(path_to_code, team_name):
     team_folder_path = process_java(path_to_code, team_name)
-    if team_folder_path is None:
+    if team_folder_path < 0:
         print("Processing java code failed")
-        return False
+        return team_folder_path
     output_paths = []
     for test_case in range(1, TEST_CASES + 1):
         output_paths.append(execute_java(path_to_code, team_folder_path, str(test_case)))
@@ -74,7 +74,7 @@ def python_execute_test_cases(path_to_mapper,
         print("Created team folder")
     except OSError as e:
         if e.errno != errno.EEXIST:
-            return None
+            return -1
         else:
             pass
     for test_case in range(1, TEST_CASES + 1):
@@ -107,71 +107,103 @@ def exe(submission_id):
     # if python:
     # else:
     submission = SubmissionAssignmentOne.objects.get(id=submission_id)
+    mail_message_1 = "Task 1\n"
+    mail_message_2 = "Task 2\n"
+    mail_message_3 = "Task 3\n"
+    score_1 = 0
+    score_2 = 0
+    score_3 = 0
     if submission.python:
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '1')
-
-        except Exception as e:
-            print(e)
+        if(output_paths == -1):
+            mail_message_1 += "unknown error\n"
+        else if(output_paths == -2):
+            mail_message_1 += "compilation error for task\n"
+        else if(output_paths == -3):
+            mail_message_1 += "jar file generation issue\n"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_1 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_1 += "Passed\n"
+                    score_1+=1
+                else:
+                    mail_message_1 += "Failed\n"
+                
+        
+        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        if(output_paths == -1):
+            mail_message_2 += "unknown error"
+        else if(output_paths == -2):
+            mail_message_2 += "compilation error"
+        else if(output_paths == -3):
+            mail_message_2 += "jar file generation error"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_2 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_2 += "Passed\n"
+                    score_2+=1
+                else:
+                    mail_message_2 += "Failed\n"
 
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '2')
-
-        except Exception as e:
-            print(e)
-
-        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '3')
-
-        except Exception as e:
-            print(e)
+        if(output_paths == -1):
+            mail_message_3 += "unknown error"
+        else if(output_paths == -2):
+            mail_message_3 += "compilation error for task"
+        else if(output_paths == -3):
+            mail_message_3 += "jar file generation issue"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_3 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_3 += "Passed\n"
+                    score_3+=1
+                else:
+                    mail_message_3 += "Failed\n"
     else:
         output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '1')
-
-        except Exception as e:
-            print(e)
+        if(output_paths[0] == False):
+            mail_message_1 += "Compilation error\n"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_1 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_1 += "Passed\n"
+                    score_1+=1
+                else:
+                    mail_message_1 += "Failed\n"
+                    
+        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        if(output_paths[0] == False):
+            mail_message_2 += "Compilation error\n"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_2 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_2 += "Passed\n"
+                    score_2+=1
+                else:
+                    mail_message_2 += "Failed\n"
 
         output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '2')
-
-        except Exception as e:
-            print(e)
-
-        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        print(output_paths)
-        try:
-            if output_paths is False:
-                correctness = False
-            else:
-                correctness = test(output_paths, '3')
-
-        except Exception as e:
-            print(e)
+        if(output_paths[0] == False):
+            mail_message_3 += "Compilation error\n"
+        else:
+            correctness = test(output_paths, '1')
+            for i in range(len(correctness)):
+                mail_message_3 += "Test case " + str(i) + " "
+                if(correctness[i] == 1):
+                    mail_message_3 += "Passed\n"
+                    score_3+=1
+                else:
+                    mail_message_3 += "Failed\n"
         
 
