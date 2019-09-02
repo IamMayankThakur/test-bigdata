@@ -56,7 +56,7 @@ def process_java(path_to_code, team_name):
 
 def java_execute_test_cases(path_to_code, team_name):
     team_folder_path = process_java(path_to_code, team_name)
-    if team_folder_path < 0:
+    if isinstance(team_folder_path, int) and team_folder_path < 0:
         print("Processing java code failed")
         return team_folder_path
     output_paths = []
@@ -115,12 +115,13 @@ def exe(submission_id):
     score_3 = 0
     if submission.java:
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        if (output_paths == -1):
-            mail_message_1 += "unknown error\n"
-        elif (output_paths == -2):
-            mail_message_1 += "compilation error for task\n"
-        elif (output_paths == -3):
-            mail_message_1 += "jar file generation issue\n"
+        if isinstance(output_paths, int):
+            if (output_paths == -1):
+                mail_message_1 += "unknown error\n"
+            elif (output_paths == -2):
+                mail_message_1 += "compilation error for task\n"
+            elif (output_paths == -3):
+                mail_message_1 += "jar file generation issue\n"
         # else:
         #     correctness = test(output_paths, '1')
         #     for i in range(len(correctness)):
@@ -132,12 +133,13 @@ def exe(submission_id):
         #             mail_message_1 += "Failed\n"
 
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
-        if (output_paths == -1):
-            mail_message_2 += "unknown error"
-        elif (output_paths == -2):
-            mail_message_2 += "compilation error"
-        elif (output_paths == -3):
-            mail_message_2 += "jar file generation error"
+        if isinstance(output_paths, int):
+            if (output_paths == -1):
+                mail_message_2 += "unknown error"
+            elif (output_paths == -2):
+                mail_message_2 += "compilation error"
+            elif (output_paths == -3):
+                mail_message_2 += "jar file generation error"
         # else:
         #     correctness = test(output_paths, '1')
         #     for i in range(len(correctness)):
@@ -150,12 +152,13 @@ def exe(submission_id):
 
         output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         print(output_paths)
-        if (output_paths == -1):
-            mail_message_3 += "unknown error"
-        elif (output_paths == -2):
-            mail_message_3 += "compilation error for task"
-        elif (output_paths == -3):
-            mail_message_3 += "jar file generation issue"
+        if isinstance(output_paths, int):
+            if (output_paths == -1):
+                mail_message_3 += "unknown error"
+            elif (output_paths == -2):
+                mail_message_3 += "compilation error for task"
+            elif (output_paths == -3):
+                mail_message_3 += "jar file generation issue"
         # else:
         #     correctness = test(output_paths, '1')
         #     for i in range(len(correctness)):
