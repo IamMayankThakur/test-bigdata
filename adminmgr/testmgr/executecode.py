@@ -50,7 +50,7 @@ def process_java(path_to_code, team_name):
     print("[TEST-COMPONENT-LOG][" + team_name + "] COMPILATION SUCCESSFUL")
 
     if (java_jar_file_generator(os.path.join(team_folder_path, "ClassFiles"),
-                                team_folder_path, "WordCountJ") is False):
+                                team_folder_path, "test") is False):
         return -3
     print("[TEST-COMPONENT-LOG][" + "/" + team_name + "] JAR FILE CREATED")
     return team_folder_path
