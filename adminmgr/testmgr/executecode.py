@@ -95,8 +95,8 @@ def execute_python(path_to_mapper, path_to_reducer, team_folder_path, test_case_
 
 
 def execute_java(path_to_code, team_folder_path, test_case_number):
-    if (java_map_reduce_execute(os.path.join(team_folder_path, "WordCountJ.jar"),
-                                "WordCount", "/Test_Case_" + str(test_case_number),
+    if (java_map_reduce_execute(os.path.join(team_folder_path, "test.jar"),
+                                "Task1", "/Test_Case_" + str(test_case_number),
                                 HADOOP_OUTPUT_PATH) is False):
         return None
     print("[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL")
@@ -165,7 +165,7 @@ def exe(submission_id):
         #             score_3 += 1
         #         else:
         #             mail_message_3 += "Failed\n"
-        
+
     if submission.python:
         output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         if (output_paths[0] == False):
