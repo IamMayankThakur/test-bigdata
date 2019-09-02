@@ -18,6 +18,7 @@ def java_map_reduce_execute(path_to_jar, java_file_name, hdfs_input_path, hdfs_o
         print("Error executing java map reduce code")
         return False
 
+
 def python_map_reduce_execute(path_to_mapper, path_to_reducer, hdfs_input_path, hdfs_output_path):
     command = "hadoop" + " " + "jar" + " " 
     command += HADOOP_STREAMING_BASE_PATH + " " + "-files" + " "
@@ -33,7 +34,7 @@ def python_map_reduce_execute(path_to_mapper, path_to_reducer, hdfs_input_path, 
         os.system(command)
         print("python map reduce execution successful")
         return True
-    except:
+    except Exception as e:
         print(e)
         print("Error executing python map reduce code")
         return False

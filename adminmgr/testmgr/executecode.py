@@ -13,6 +13,7 @@ from .testoutput import test
 
 
 def download_file(path, test_case_number):
+    print(os.system("hdfs dfs -ls /output_word"))
     try:
         client = InsecureClient(('http://'
                                  + HADOOP_HOST_NAME + ':'
