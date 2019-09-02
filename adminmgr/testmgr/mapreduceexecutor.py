@@ -11,6 +11,7 @@ def java_map_reduce_execute(path_to_jar, java_file_name, hdfs_input_path, hdfs_o
                     + hdfs_output_path)
     try:
         os.system(full_command)
+        print("COMMAND: " + full_command)
         print("java map reduce execution successful")
         return True
     except Exception as e:
