@@ -98,8 +98,9 @@ def execute_python(path_to_mapper, path_to_reducer, team_folder_path, test_case_
 
 
 def execute_java(path_to_code, team_folder_path, test_case_number):
+    # TODO: Change 'task4' to get it from db
     if (java_map_reduce_execute(os.path.join(team_folder_path, "test.jar"),
-                                "Task3", "/Test_Case_" + str(test_case_number),
+                                "Task4", "/Test_Case_" + str(test_case_number),
                                 HADOOP_OUTPUT_PATH) is False):
         return None
     print("[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL")
