@@ -64,16 +64,32 @@ def java_execute_test_cases(path_to_code, team_name):
     return output_paths
 
 
-# def python_execute_test_cases(path_to_mapper,
-#                               path_to_reducer, team_name):
-#     output_paths = []
-#     for test_case in range(1, TEST_CASES + 1):
-#         output_paths.append(execute_python(path_to_mapper,
-#                                            path_to_reducer,
-#                                            team_name,
-#                                            str(test_case)))
-#         return output_paths
+def python_execute_test_cases(path_to_mapper,
+                              path_to_reducer, 
+                              team_name):
+    output_paths = []
+    team_folder_path = os.path.join(TEAMS_BASE_PATH, team_name)
+    try:
+        os.mkdir(team_folder_path)
+        print("Created team folder")
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            return None
+        else:
+            pass
+    for test_case in range(1, TEST_CASES + 1):
+        output_paths.append(execute_python(path_to_mapper,
+                                           path_to_reducer,
+                                           team_folder_path,
+                                           str(test_case)))
+    return output_paths
 
+def execute_python(path_to_mapper, path_to_reducer, team_name, test_case):
+    if(python_map_reduce_execute(path_to_mapper, path_to_reducer, "/Input/data.txt", "/output_word") == False):
+        return None
+    print("[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL")
+    download_file(team_folder_path, test_case_number)
+    return os.path.join(team_folder_path, test_case_number, "part-00000")
 
 def execute_java(path_to_code, team_folder_path, test_case_number):
     if (java_map_reduce_execute(os.path.join(team_folder_path, "WordCountJ.jar"),
@@ -124,4 +140,38 @@ def exe(submission_id):
 
         except Exception as e:
             print(e)
+    else:
+        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '1')
+
+        except Exception as e:
+            print(e)
+
+        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '2')
+
+        except Exception as e:
+            print(e)
+
+        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        print(output_paths)
+        try:
+            if output_paths is False:
+                correctness = False
+            else:
+                correctness = test(output_paths, '3')
+
+        except Exception as e:
+            print(e)
+        
 
