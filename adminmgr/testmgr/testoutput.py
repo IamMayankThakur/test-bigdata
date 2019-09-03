@@ -14,6 +14,7 @@ def test(output_paths, task_number):
         correctness.append(check_test_case(output_path,
                                            (os.path.join(SETTERS_OUTPUT_BASE_PATH, task_number,
                                                          str(test_case) + ".txt")), str(test_case)))
+    return correctness
 
 
 def check_test_case(path_to_team_output, path_to_correct_output,
