@@ -24,7 +24,8 @@ def download_file(path, test_case_number):
         return
     try:
         client.download(HADOOP_OUTPUT_PATH + "/", os.path.join(path, test_case_number))
-    except:
+    except Exception as e:
+        print(e)
         print("Error download output file")
         return
     try:
@@ -90,7 +91,7 @@ def python_execute_test_cases(path_to_mapper,
 
 
 def execute_python(path_to_mapper, path_to_reducer, team_folder_path, test_case_number):
-    if python_map_reduce_execute(path_to_mapper, path_to_reducer, "/Input10/craigslistVehiclesFull_2.csv", "/output_word") is False:
+    if python_map_reduce_execute(path_to_mapper, path_to_reducer, "/Test_Case_" + str(test_case_number), "/output_word") is False:
         return None
     print("[TEST-COMPONENT-LOG]MAP REDUCE EXECUTION SUCCESSFUL")
     download_file(team_folder_path, test_case_number)
@@ -173,7 +174,7 @@ def exe(submission_id):
         #             mail_message_3 += "Failed\n"
 
     if submission.python:
-        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        output_paths = python_execute_test_cases(submission.code_file_python_map_1.path, submission.code_file_python_reduce_1.path, submission.team.team_name)
         if not output_paths[0]:
             mail_message_1 += "Compilation error\n"
         else:
@@ -186,7 +187,7 @@ def exe(submission_id):
                 else:
                     mail_message_1 += "Failed\n"
 
-        output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        '''output_paths = python_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         if not output_paths[0]:
             mail_message_2 += "Compilation error\n"
         else:
@@ -210,7 +211,7 @@ def exe(submission_id):
                     mail_message_3 += "Passed\n"
                     score_3 += 1
                 else:
-                    mail_message_3 += "Failed\n"
+                    mail_message_3 += "Failed\n"'''
 
     submission.remarks = mail_message_1 + ';' + mail_message_2 + ';' + mail_message_3
     submission.score_1 = score_1

@@ -31,6 +31,7 @@ def python_map_reduce_execute(path_to_mapper, path_to_reducer, hdfs_input_path, 
     command += "-output" + " " + hdfs_output_path
     
     print(command)
+    print(os.system("pwd"))
     try:
         os.system(command)
         print("python map reduce execution successful")
