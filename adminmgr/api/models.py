@@ -5,8 +5,8 @@ class Team(models.Model):
     team_name = models.CharField(max_length=128, unique=True, blank=False)
     member_1 = models.CharField(max_length=128, unique=True, blank=False)
     member_2 = models.CharField(max_length=128, unique=True, blank=True)
-    member_3 = models.CharField(max_length=128, unique=True, blank=True)
-    member_4 = models.CharField(max_length=128, unique=True, blank=True)
+    member_3 = models.CharField(max_length=128, unique=False, blank=True)
+    member_4 = models.CharField(max_length=128, unique=False, blank=True)
 
     def __str__(self):
         return self.team_name
