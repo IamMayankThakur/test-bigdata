@@ -130,12 +130,7 @@ def exe(submission_id):
             
             correctness = test(output_paths, '1')
             for i in range(len(correctness)):
-                mail_message_1 += "Test case " + str(i) + " "
-                if (correctness[i] == 1):
-                    mail_message_1 += "Passed\n"
-                    score_1 += correctness[i]
-                else:
-                    mail_message_1 += "Failed\n"
+                score_1 += correctness[i]
 
         '''output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
         if isinstance(output_paths, int):
@@ -182,7 +177,7 @@ def exe(submission_id):
             correctness = test(output_paths, '1')
             for i in range(len(correctness)):
                 mail_message_1 += "Test case " + str(i) + " "
-                if correctness[i] == 1:
+                if correctness[i] > 0:
                     mail_message_1 += "Passed\n"
                     score_1 += correctness[i]
                 else:
@@ -215,7 +210,8 @@ def exe(submission_id):
                     mail_message_3 += "Failed\n"'''
 
     submission.remarks = mail_message_1 + ';' + mail_message_2 + ';' + mail_message_3
-    submission.score_1 = score_1
-    submission.score_2 = score_2
-    submission.score_3 = score_3
+    submission.score_1 = 4
+    submission.score_2 = score_1
+    submission.score_3 = score_2
+    submission.score_4 = score_3
     submission.save()
