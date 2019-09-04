@@ -11,10 +11,9 @@ def java_map_reduce_compile(path_to_code, destination_path):
 
     destination_class_path = destination_path + "/ClassFiles"
     try:
-        os.mkdir(destination_path + "/ClassFiles")
+        x = os.mkdir(destination_path + "/ClassFiles")
         print("Created classfiles directory")
     except Exception as e:
-        print("Error creating directory")
         print(str(e))
     '''full_command = (base_command + " "
                     + hadoop_common_jar_path + ":"
@@ -27,9 +26,11 @@ def java_map_reduce_compile(path_to_code, destination_path):
                     + "-cp" + " $(hadoop classpath)")
     try:
         print(full_command)
-        os.system(full_command)
+        x = os.system(full_command)
     except Exception as e:
-        print("Error compiling java code")
         print(str(e))
+        return False
+    if x != 0:
+        print("Compilation error")
         return False
     return True

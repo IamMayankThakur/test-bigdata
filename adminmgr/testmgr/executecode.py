@@ -127,12 +127,13 @@ def exe(submission_id):
             elif output_paths == -3:
                 mail_message_1 += "jar file generation issue\n"
         else:
+            
             correctness = test(output_paths, '1')
             for i in range(len(correctness)):
                 mail_message_1 += "Test case " + str(i) + " "
                 if (correctness[i] == 1):
                     mail_message_1 += "Passed\n"
-                    score_1 += 1
+                    score_1 += correctness[i]
                 else:
                     mail_message_1 += "Failed\n"
 
@@ -183,7 +184,7 @@ def exe(submission_id):
                 mail_message_1 += "Test case " + str(i) + " "
                 if correctness[i] == 1:
                     mail_message_1 += "Passed\n"
-                    score_1 += 1
+                    score_1 += correctness[i]
                 else:
                     mail_message_1 += "Failed\n"
 
