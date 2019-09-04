@@ -65,11 +65,13 @@ class CodeUpload(View):
             )
             submission.save()
         except Exception as e:
+            print(e)
             return HttpResponse("Cannot accept this submission. Please submit valid data")
         try:
             run.apply_async([submission.id])
         except Exception as e:
-            return HttpResponse("Cannot add submission to queue. Contact any TA for resolution")
+            print(e)
+            return HttpResponse("Cannot add submission to queue. Contact mayankthakur@pesu.pes.edu for resolution")
         return HttpResponse(
             "Done. You will receive your results via an email. The submission id is " + str(submission.id)
             + ". Use this submission id to get in touch in case you dont get an email result.")

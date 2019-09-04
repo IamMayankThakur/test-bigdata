@@ -1,4 +1,14 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+import os
+
+
+class OverwriteStorage(FileSystemStorage):
+
+    def get_available_name(self, name, max_length=None):
+        if self.exists(name):
+            os.remove(os.path.join(self.location, name))
+        return name
 
 
 class Team(models.Model):
@@ -17,16 +27,22 @@ class SubmissionAssignmentOne(models.Model):
     submitted_on = models.DateTimeField(auto_now=True)
     python = models.BooleanField(default=False)
     java = models.BooleanField(default=True)
-    code_config = models.FileField(blank=False, upload_to='code/config')
-    code_file_java_task_1 = models.FileField(blank=True, null=True, upload_to='code/java/1')
-    code_file_java_task_2 = models.FileField(blank=True, null=True, upload_to='code/java/2')
-    code_file_java_task_3 = models.FileField(blank=True, null=True, upload_to='code/java/3')
-    code_file_python_map_1 = models.FileField(blank=True, null=True, upload_to='code/python/map1')
-    code_file_python_map_2 = models.FileField(blank=True, null=True, upload_to='code/python/map2')
-    code_file_python_map_3 = models.FileField(blank=True, null=True, upload_to='code/python/map3')
-    code_file_python_reduce_1 = models.FileField(blank=True, null=True, upload_to='code/python/red1')
-    code_file_python_reduce_2 = models.FileField(blank=True, null=True, upload_to='code/python/red2')
-    code_file_python_reduce_3 = models.FileField(blank=True, null=True, upload_to='code/python/red3')
+    code_config = models.FileField(blank=False, upload_to='code/config', storage=OverwriteStorage())
+    code_file_java_task_1 = models.FileField(blank=True, null=True, upload_to='code/java/1', storage=OverwriteStorage())
+    code_file_java_task_2 = models.FileField(blank=True, null=True, upload_to='code/java/2', storage=OverwriteStorage())
+    code_file_java_task_3 = models.FileField(blank=True, null=True, upload_to='code/java/3', storage=OverwriteStorage())
+    code_file_python_map_1 = models.FileField(blank=True, null=True, upload_to='code/python/map1',
+                                              storage=OverwriteStorage())
+    code_file_python_map_2 = models.FileField(blank=True, null=True, upload_to='code/python/map2',
+                                              storage=OverwriteStorage())
+    code_file_python_map_3 = models.FileField(blank=True, null=True, upload_to='code/python/map3',
+                                              storage=OverwriteStorage())
+    code_file_python_reduce_1 = models.FileField(blank=True, null=True, upload_to='code/python/red1',
+                                                 storage=OverwriteStorage())
+    code_file_python_reduce_2 = models.FileField(blank=True, null=True, upload_to='code/python/red2',
+                                                 storage=OverwriteStorage())
+    code_file_python_reduce_3 = models.FileField(blank=True, null=True, upload_to='code/python/red3',
+                                                 storage=OverwriteStorage())
     score_1 = models.IntegerField(default=-1)
     score_2 = models.IntegerField(default=-1)
     score_3 = models.IntegerField(default=-1)

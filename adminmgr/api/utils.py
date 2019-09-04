@@ -3,7 +3,7 @@ from celery import shared_task
 from notifymgr.mail import send_mail
 from testmgr.executecode import exe
 from .models import SubmissionAssignmentOne, Team
-#import pandas as pd
+# import pandas as pd
 
 
 @shared_task
@@ -15,6 +15,7 @@ def run(submission_id):
     for email in emails:
         if email != '':
             send_mail(email)
+    print("Submission Evaluation Complete")
 
 
 '''def port_csv_to_db():
