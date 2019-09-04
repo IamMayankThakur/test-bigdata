@@ -57,7 +57,7 @@ def process_java(path_to_code, team_name):
     return team_folder_path
 
 
-def java_execute_test_cases(path_to_code, team_name):
+def java_execute_test_cases(team_name, path_to_code, team_name):
     team_folder_path = process_java(path_to_code, team_name)
     if isinstance(team_folder_path, int):
         if team_folder_path < 0:
@@ -65,7 +65,7 @@ def java_execute_test_cases(path_to_code, team_name):
             return team_folder_path
     output_paths = []
     for test_case in range(1, TEST_CASES + 1):
-        output_paths.append(execute_java(path_to_code, team_folder_path, str(test_case)))
+        output_paths.append(execute_java(team_name, team_folder_path, str(test_case)))
     return output_paths
 
 
@@ -98,7 +98,7 @@ def execute_python(path_to_mapper, path_to_reducer, team_folder_path, test_case_
     return os.path.join(team_folder_path, test_case_number, "part-00000")
 
 
-def execute_java(path_to_code, team_folder_path, test_case_number):
+def execute_java(team_name, team_folder_path, test_case_number):
     if (java_map_reduce_execute(os.path.join(team_folder_path, "test.jar"),
                                 "H17", "/Test_Case_" + str(test_case_number),
                                 HADOOP_OUTPUT_PATH) is False):
@@ -118,7 +118,7 @@ def exe(submission_id):
     score_2 = 0
     score_3 = 0
     if submission.java:
-        output_paths = java_execute_test_cases(submission.code_file_java_task_1.path, submission.team.team_name)
+        output_paths = java_execute_test_cases(submission.team.team_name, submission.code_file_java_task_1.path, submission.team.team_name)
         if isinstance(output_paths, int):
             if output_paths == -1:
                 mail_message_1 += "unknown error\n"
