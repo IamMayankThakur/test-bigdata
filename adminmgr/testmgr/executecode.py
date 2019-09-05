@@ -166,7 +166,6 @@ def exe(submission_id):
         else:
             correctness = test_task_3(output_paths)
             for i in range(len(correctness)):
-                mail_message_3 += "Test case " + str(i) + " "
                 score_3 += correctness[i]
 
 
@@ -174,35 +173,37 @@ def exe(submission_id):
         print("PYTHON STARTING TASK 1")
         output_paths = python_execute_test_cases(submission.code_file_python_map_1.path, submission.code_file_python_reduce_1.path, submission.team.team_name, '1')
         print(output_paths)
-        if not output_paths:
+        if not output_paths or output_paths[0] == None:
             mail_message_1 += "Compilation error\n"
         else:
             correctness = test_task_1_2(output_paths, '1')
             for i in range(len(correctness)):
-                mail_message_1 += "Test case " + str(i) + " "
                 score_1 += correctness[i]
         print("PYTHON STARTING TASK 2")
         output_paths = python_execute_test_cases(submission.code_file_python_map_2.path, submission.code_file_python_reduce_2.path, submission.team.team_name, '2')
-        if not output_paths:
+        if not output_paths or output_paths[0] == None:
             mail_message_2 += "Compilation error\n"
         else:
             correctness = test_task_1_2(output_paths, '2')
             for i in range(len(correctness)):
-                mail_message_2 += "Test case " + str(i) + " "
                 score_2 += correctness[i]
         print("PYTHON STARTING TASK 3")
         output_paths = python_execute_test_cases(submission.code_file_python_map_3.path, submission.code_file_python_reduce_3.path, submission.team.team_name, '3')
-        if not output_paths:
+        if not output_paths or output_paths[0] == None:
             mail_message_3 += "Compilation error\n"
         else:
             correctness = test_task_3(output_paths)
             for i in range(len(correctness)):
-                mail_message_3 += "Test case " + str(i) + " "
                 score_3 += correctness[i]
 
       
 
-    submission.remarks = mail_message_1 + ';' + mail_message_2 + ';' + mail_message_3
+    if(mail_message_1 != "Task 1\n"):
+        submission.remarks = mail_message_1 + '\n\n' 
+    if(mail_message_2 != "Task 2\n"):
+        submission.remarks += mail_message_2 + '\n\n' 
+    if(mail_message_3 != "Task 3\n"):
+        submission.remarks += mail_message_3 + "\n\n"
     submission.score_1 = 4
     submission.score_2 = score_1
     submission.score_3 = score_2

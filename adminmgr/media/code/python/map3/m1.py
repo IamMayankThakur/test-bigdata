@@ -14,7 +14,7 @@ for line in infile:
     s = ""
     if (my_list[0] == "ball"):
         try:
-        	if (len(my_list[0]) != 0 and (my_list[9][0] == 'b' or my_list[9][0] == 'c')):
+        	if (len(my_list[0]) != 0 and (my_list[9][0] == 'b' or my_list[9][0] == 'c' or my_list[9][0]=='l')):
         		s = "1"
         except:
         	s="0"
@@ -49,6 +49,6 @@ for i in final_list:
 	for j in vals:
 		if (j == "1"):
 			totalWickets += 1
-	if(totalDeliveries > 1):
+	if(totalDeliveries > 5):
 		temp=data[0]+"\t"+str(totalWickets)+","+str(totalDeliveries)
 		print(temp)

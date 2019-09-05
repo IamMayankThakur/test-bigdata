@@ -22,7 +22,7 @@ for line in sys.stdin:
 	L.append([r[0],r[1],int(rc[0]),int(rc[1])])
 	#batsman,bowler,wickets,deliveries
    	#SORT L BASED ON THE PROBLEM STATEMENT
-L=sorted(L,key=lambda x: (-x[2],x[3],x[0]))
+L=sorted(L,key=lambda x: (-x[2],x[3],x[0],x[1]))
 for i in range(len(L)):
 	print(str(L[i][0])+","+str(L[i][1])+","+str(L[i][2])+","+str(L[i][3]))
 #for line in sys.stdin:

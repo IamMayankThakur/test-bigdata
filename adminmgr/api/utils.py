@@ -7,7 +7,7 @@ from testmgr.executecode import exe
 
 @shared_task
 def run(submission_id):
-    # exe(submission_id=submission_id)
+    exe(submission_id=submission_id)
     send_mail(submission_id)
     print("Submission Evaluation Complete")
 

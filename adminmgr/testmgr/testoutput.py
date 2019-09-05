@@ -20,6 +20,8 @@ def test_task_3(output_paths):
     return [0]
   
 def test_task_1_2(output_paths, task_number):
+    if(output_paths[0] == None):
+        return [0]
     path_to_correct_output_1 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
                                           "Task"+task_number,
                                           "0.txt")
