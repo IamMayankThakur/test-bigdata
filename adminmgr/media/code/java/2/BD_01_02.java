@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class BD_01_02 {
 
-	public static class TokenizerMapper
+    public static class TokenizerMapper
     extends Mapper<Object, Text, Text, Text>{
 
         private final static IntWritable one = new IntWritable(1);
@@ -22,13 +22,19 @@ public class BD_01_02 {
 
         public void map(Object key, Text value, Context context
                         ) throws IOException, InterruptedException {
-
-        	String itr = value.toString();
-        	String[] Record = itr.split(";");
-        	if(Record[8].equals("gas"))
-        	{
-        		context.write(new Text(Record[1]), new Text(Record[8]));
-        	}
+            String itr = value.toString();
+            String[] Record = itr.split(",");
+            String str = "";
+            int sum = 0;
+            if(Record[0].charAt(0) == 'b')
+            {
+                sum = Integer.parseInt(Record[7]) + Integer.parseInt(Record[8]);
+                str = "" + sum;
+            }
+            if(Record.length < 5)
+                return;
+            Text s = new Text(str);
+            context.write(new Text(Record[6] + "," + Record[4]), s);
         }
     }
 
@@ -39,12 +45,19 @@ public class BD_01_02 {
         public void reduce(Text key, Iterable<Text> values,
                            Context context
                            ) throws IOException, InterruptedException {
-        	int count = 0;
-        	for(Text value: values)
-        	{	
-        		count ++;
-        	}
-        	context.write(key, new Text(""+count));
+            int totalRuns = 0;
+            int totalDeliveries = 0;
+            for(Text value: values)
+            {
+                String str = value.toString();
+                totalDeliveries += 1;
+                totalRuns += Integer.parseInt(str);
+            }
+            if(totalDeliveries > 5)
+            {
+                Text oval = new Text(totalRuns + "," + totalDeliveries);
+                context.write(key, oval);
+            }
         }
     }
 
@@ -55,7 +68,7 @@ public class BD_01_02 {
         public void reduce(Text key, Text values,
                            Context context
                            ) throws IOException, InterruptedException {
-            
+
             context.write(key, values);
 
         }
@@ -65,7 +78,7 @@ public class BD_01_02 {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "BD_01_02");
-        job.setJarByClass(BD_00_01.class);
+        job.setJarByClass(BD_01_02.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setMapOutputValueClass(Text.class);
         job.setCombinerClass(IntSumCombiner.class);
