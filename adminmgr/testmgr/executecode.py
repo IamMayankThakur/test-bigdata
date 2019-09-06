@@ -128,9 +128,9 @@ def execute_java(team_name, team_folder_path, test_case_number, task_number):
 
 def exe(submission_id):
     submission = SubmissionAssignmentOne.objects.get(id=submission_id)
-    mail_message_1 = "Task 1\n"
-    mail_message_2 = "Task 2\n"
-    mail_message_3 = "Task 3\n"
+    mail_message_1 = "Task 2\n"
+    mail_message_2 = "Task 3\n"
+    mail_message_3 = "Task 4\n"
     score_1 = 0
     score_2 = 0
     score_3 = 0
@@ -198,11 +198,11 @@ def exe(submission_id):
 
       
 
-    if(mail_message_1 != "Task 1\n"):
+    if(mail_message_1 != "Task 2\n"):
         submission.remarks = mail_message_1 + '\n\n' 
-    if(mail_message_2 != "Task 2\n"):
+    if(mail_message_2 != "Task 3\n"):
         submission.remarks += mail_message_2 + '\n\n' 
-    if(mail_message_3 != "Task 3\n"):
+    if(mail_message_3 != "Task 4\n"):
         submission.remarks += mail_message_3 + "\n\n"
     submission.score_1 = 4
     submission.score_2 = score_1
