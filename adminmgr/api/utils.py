@@ -3,7 +3,7 @@ from celery import shared_task
 from notifymgr.mail import send_mail
 from testmgr.executecode import exe
 from api.models import Team
-import pandas as pd
+#import pandas as pd
 
 
 @shared_task
@@ -13,7 +13,7 @@ def run(submission_id):
     print("Submission Evaluation Complete")
 
 
-def port_csv_to_db():
+'''def port_csv_to_db():
     csv_path = "/home/ubuntu/test-bigdata/data_reg.csv"
     df = pd.read_csv(csv_path)
     for index, row in df.iterrows():
@@ -28,4 +28,4 @@ def port_csv_to_db():
             team_obj.save()
         except Exception as e:
             print(e)
-            print("Invalid row")
+            print("Invalid row")'''
