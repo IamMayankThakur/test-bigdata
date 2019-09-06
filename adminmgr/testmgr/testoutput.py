@@ -25,7 +25,7 @@ def test_task_1_2(output_paths, task_number):
     path_to_correct_output_1 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
                                           "Task"+task_number,
                                           "0.txt")
-    path_to_correct_output_2 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
+    '''path_to_correct_output_2 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
                                           "Task"+task_number,
                                           "1.txt")
     path_to_correct_output_3 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
@@ -33,11 +33,11 @@ def test_task_1_2(output_paths, task_number):
                                           "2.txt")
     path_to_correct_output_4 = os.path.join(SETTERS_OUTPUT_BASE_PATH, 
                                           "Task"+task_number,
-                                          "3.txt")
+                                          "3.txt")'''
     x_1 = os.system("diff -wBZ "+path_to_correct_output_1 + " " + output_paths[0] + "> abc")
     if x_1 == 0:
         return [4]
-    x_2 = os.system("diff -wBZ "+path_to_correct_output_2 + " " + output_paths[0] + "> abc")
+    '''x_2 = os.system("diff -wBZ "+path_to_correct_output_2 + " " + output_paths[0] + "> abc")
     if x_2 == 0:
         return [3]
     x_3 = os.system("diff -wBZ "+path_to_correct_output_3 + " " + output_paths[0] + "> abc")
@@ -49,7 +49,7 @@ def test_task_1_2(output_paths, task_number):
     # print("x_3 = " + str(x_3))
     # print("x_4 = " + str(x_4))
     if x_4 == 0:
-        return [1]
+        return [1]'''
     return [0]
         
 def test(output_paths, task_number):
