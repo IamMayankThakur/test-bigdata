@@ -11,19 +11,18 @@ final_list = []
 for line in infile:
     #line = line.strip()
     my_list = line.split(",")
-    s = ""
+    runs = ""
     if (my_list[0] == "ball"):
         try:
-        	if (len(my_list[0]) != 0 and (my_list[9][0] == 'b' or my_list[9][0] == 'c' or my_list[9][0]=='l' or my_list[9][0] == 's' or my_list[9][0] == 'o' or my_list[9][0] == 'h')):
-        		s = "1" 
+        	if (len(my_list[0]) != 0):
+        		runs = int(my_list[7]) + int(my_list[8])
         except:
-        	s="0"
         	pass
-        pair = my_list[4]+","+my_list[6]
+        pair = my_list[6]+","+my_list[4]
         if pair not in d:
-        	d[pair] = s
+        	d[pair] = str(runs)
         else:
-        	d[pair] += " " + s
+        	d[pair] += " " + str(runs)
     else:
     	continue
     #if (my_list[0]=="info"):
@@ -41,14 +40,13 @@ final_list.sort()
 #	sys.stderr.write(i+"\n")
 
 for i in final_list:
-	totalWickets = 0
+	totalRuns = 0
 	totalDeliveries = 0
 	data = i.split("\t")
-	vals = data[1].split(" ")
-	totalDeliveries=len(vals)
-	for j in vals:
-		if (j == "1"):
-			totalWickets += 1
+	runs = data[1].split(" ")
+	totalDeliveries=len(runs)
+	for j in runs:
+		totalRuns += int(j)
 	if(totalDeliveries > 5):
-		temp=data[0]+"\t"+str(totalWickets)+","+str(totalDeliveries)
+		temp=data[0]+"\t"+str(totalRuns)+","+str(totalDeliveries)
 		print(temp)

@@ -140,7 +140,7 @@ def exe(submission_id):
         if output_paths[0] == -1:
             mail_message_1 += "unknown error\n"
         elif output_paths[0] == -2:
-            mail_message_1 += "compilation error for task\n"
+            mail_message_1 += "compilation error\n"
         elif output_paths[0] == -3:
             mail_message_1 += "jar file generation issue\n"
         else:
@@ -152,7 +152,7 @@ def exe(submission_id):
         if output_paths[0] == -1:
             mail_message_2 += "unknown error\n"
         elif output_paths[0] == -2:
-            mail_message_2 += "compilation error for task\n"
+            mail_message_2 += "compilation error\n"
         elif output_paths[0] == -3:
             mail_message_2 += "jar file generation issue\n"        
         else:
@@ -161,8 +161,12 @@ def exe(submission_id):
                 score_2 += correctness[i]
         print("JAVA STARTING TASK 3")
         output_paths = java_execute_test_cases(submission.code_file_java_task_3.path, submission.team.team_name, '3')
-        if not output_paths:
-            mail_message_3 += "Compilation error\n"
+        if output_paths[0] == -1:
+            mail_message_3 += "unknown error\n"
+        elif output_paths[0] == -2:
+            mail_message_3 += "compilation error\n"
+        elif output_paths[0] == -3:
+            mail_message_3 += "jar file generation issue\n"          
         else:
             correctness = test_task_3(output_paths)
             for i in range(len(correctness)):
