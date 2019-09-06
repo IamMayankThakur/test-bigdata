@@ -44,6 +44,10 @@ def test_task_1_2(output_paths, task_number):
     if x_3 == 0:
         return [2]
     x_4 = os.system("diff -wBZ "+path_to_correct_output_4 + " " + output_paths[0] + "> abc")
+    print("x_1 = " + str(x_1))
+    print("x_2 = " + str(x_2))
+    print("x_3 = " + str(x_3))
+    print("x_4 = " + str(x_4))
     if x_4 == 0:
         return [1]
     return [0]
