@@ -1,0 +1,14 @@
+Data Structures Assignment #2  
+---------------------------------------------------------------
+1. Write a program that reads in a positive integer and prints the binary representation of that integer.  Hint:  divide the integer by 2 and use stack or queue.
+
+2. An array called twoStacks[n] is used to represent two stacks. Stack1 has top1=0 starting at first element of the array. Stack2 has top2=n starting at the last element of the array. Write algorithm for push, pop, operations for both the stacks.
+
+3. Given two queues q1 and q2, your routine should return a new queue q3 that alternately merges q1 and q2 elements. (q11, q21, q12, q22 etc). The two original queues q1 and q2 should remain as before. (Hint: You can use additional data structures). 
+
+
+
+
+ 
+
+ 

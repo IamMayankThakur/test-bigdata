@@ -37,7 +37,7 @@ def _send(receiver_email, message):
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
     sender_email = "noreplybigdata@gmail.com"  # Enter your address
-    password = "test@bigdata"
+    password = "bigdata2019"
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:

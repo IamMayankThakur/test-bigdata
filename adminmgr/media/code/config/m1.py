@@ -14,16 +14,16 @@ for line in infile:
     s = ""
     if (my_list[0] == "ball"):
         try:
-        	if (len(my_list[0]) != 0 and (my_list[9][0] == 'b' or my_list[9][0] == 'c' or my_list[9][0]=='l')):
-        		s = "1"
+        	if (len(my_list[0]) != 0 and (my_list[9][0] == 'b' or my_list[9][0] == 'c' or my_list[9][0]=='l' or my_list[9][0] == 's' or my_list[9][0] == 'o' or my_list[9][0] == 'h')):
+        		s = "1" 
         except:
         	s="0"
         	pass
         pair = my_list[4]+","+my_list[6]
         if pair not in d:
-            d[pair] = s
+        	d[pair] = s
         else:
-            d[pair] += " " + s
+        	d[pair] += " " + s
     else:
     	continue
     #if (my_list[0]=="info"):
