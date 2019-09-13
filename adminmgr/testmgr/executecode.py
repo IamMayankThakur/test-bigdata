@@ -208,8 +208,8 @@ def exe(submission_id):
         submission.remarks += mail_message_2 + '\n\n' 
     if(mail_message_3 != "Task 4\n"):
         submission.remarks += mail_message_3 + "\n\n"
-    submission.score_1 = 4
-    submission.score_2 = score_1
-    submission.score_3 = score_2
-    submission.score_4 = score_3
+    submission.score_1 = 4 - 1
+    submission.score_2 = score_1 - 1
+    submission.score_3 = score_2 - 1
+    submission.score_4 = score_3 - 1
     submission.save()
