@@ -33,6 +33,7 @@ def run(submission_id):
 import csv
 from api.models import SubmissionAssignmentOne
 from django.db.models import Max
+import pdb
 
 
 def find_row(team_name):
@@ -45,7 +46,7 @@ def find_row(team_name):
 def get_max_marks():
     s1 = list(SubmissionAssignmentOne.objects.values(
         'team__team_name').annotate(Max('score_1')))
-    s3 = list(SubmissionAssignmentOne.objects.values(
+    s2 = list(SubmissionAssignmentOne.objects.values(
         'team__team_name').annotate(Max('score_2')))
     s3 = list(SubmissionAssignmentOne.objects.values(
         'team__team_name').annotate(Max('score_3')))
@@ -56,7 +57,11 @@ def get_max_marks():
     allrows.append(
         ['Team Name', 'SRN1', 'Viva Marks1', 'SRN2', 'Viva Marks2', 'SRN3', 'Viva Marks3', 'SRN4', 'Viva Marks4',
          'Task1 Marks', 'Task2 Marks', 'Task3 Marks', 'Task4 Marks'])
-    for i in range(len(s1)):
-        row = []
-        srn_info = find_row(s1[i]['team__team_name'])
-        print(srn_info)
+    # for i in range(len(s1)):
+    #     row = []
+    #     srn_info = find_row(s1[i]['team__team_name']
+    #     pdb.set_trace()
+    #     print(srn_info)
+    srn_info = find_row(s1[0]['team__team_name'])
+    print(srn_info)
+    print(s1)
