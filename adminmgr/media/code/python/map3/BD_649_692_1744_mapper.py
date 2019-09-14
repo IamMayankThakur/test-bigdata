@@ -1,15 +1,18 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import sys
 import csv
 
-dict_venue = dict()
-list_venue = list()
+dict_venue = {}
+list_ven = []
+infile = sys.stdin
 
 venue = ''
-for l in sys.stdin:
-    row = l.strip().split(',')
-    if(row[0] == 'ball' and int(row[8]) == 0):
-        key = venue + '~' + row[4]
+for l in infile:
+   # l = l.strip()
+   #row_list = l.split(',')
+    row_list = l.strip().split(',')
+    if(row_list[0] == 'ball' and int(row_list[8]) == 0):
+        key = venue + '~' + row_list[4]
         if(venue in dict_venue):
             dict_venue[venue] = dict_venue[venue] + 1
         else:
@@ -17,18 +20,16 @@ for l in sys.stdin:
            
         value = []
         value.append(1)
-        value.append(int(row[7]))  
+        value.append(int(row_list[7]))  
         print('%s:%s' % (key, str(value)))
-    elif(row[0] == 'info' and row[1] == 'venue'):
-        if(len(row) == 4):
-            row[2] = row[2] + row[3]
-            venue = row[2][1:-1]
+    elif(row_list[0] == 'info' and row_list[1] == 'venue'):
+        if(len(row_list) == 4):
+            row_list[2] = row_list[2] + ',' + row_list[3]
+            venue = row_list[2]
         else:
-            venue = row[2]
-        if(venue not in list_venue):
-            list_venue.append(venue)
+            venue = row_list[2]
+        if(venue not in list_ven):
+            list_ven.append(venue)
 
     else:
         continue
-        
-

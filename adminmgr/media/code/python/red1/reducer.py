@@ -1,46 +1,37 @@
 #!/usr/bin/python3
-
+from operator import itemgetter
 import sys
+import csv
+import ast
 
-d= dict()
-
-def add(batsman, bowler):
-	#the dictionary will have the value tuple (# of wickets, # of balls)
-	d[(batsman,bowler)] = [0,1]
-	return d
+Dict={}
+for line in sys.stdin:
+	lst = ast.literal_eval(line)
+	tupple = (lst[0],lst[1])
 	
-for lines in sys.stdin:
-		line1 = lines.strip();
-		line = 	line1.split(",")
-		if (line[0],line[1]) not in d:
-			d = add(line[0],line[1])
-		else:
-			d[(line[0],line[1])][1]+=1
-
-		try:
-			if line[2]!='""':
-				if line[2]!="run out":
-					d[(line[0],line[1])][0]+=1
-		except:
-			pass
-
-#to get a mutable list to sort
-final = list()
-for key in d:
-	temp = list()
-	if d[key][1]>5:
-		for i in key:
-			temp.append(i)
-		temp.append(d[key][0])
-		temp.append(d[key][1])
-		final.append(temp)
-
-
-#to sort first based on # of WICKETS, then # of BALLS and lastly BATSMAN'S NAME
-final.sort(key= lambda x:(-x[2],x[3],x[0]))
-
-for each in final:
-	for x in range(0,3):
-		print(each[x],end=",")
-	print(each[3],end="\n")
+	if(tupple not in Dict):
+		Dict[tupple] = [lst[2],lst[3]]
+		
+	else:
+		Dict[tupple][0]+=lst[2]
+		Dict[tupple][1]+=lst[3]
+'''
+for i in Dict:
+	if(Dict[i][0]>5):
 	
+		print('%s,%s,%s,%s'%(i[0],i[1],Dict[i][0],Dict[i][1]))
+'''
+lst_sort = []
+for i in Dict:
+	lst_sort.append([i[0], i[1],-1*Dict[i][0],Dict[i][1]])
+lst = sorted(lst_sort, key=itemgetter(2,3,0,1))
+j=0
+for i in lst:
+	if(i[3]>5):
+		print('%s,%s,%s,%s'%(i[0],i[1],-1*i[2],i[3]))
+	
+	
+	
+
+
+
