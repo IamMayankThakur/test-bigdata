@@ -69,10 +69,11 @@ def get_max_marks():
             print("team does not exist")
             continue
         for usn in usn_list:
-            all_rows.append([usn[0], usn[1], s1[i]['score_1__max'],
+            print(usn)
+            all_rows.append([usn[0], usn[2],usn[1], s1[i]['score_1__max'],
                             s2[i]['score_2__max'], s3[i]['score_3__max'],
                             s4[i]['score_4__max'], s1[i]['team__team_name']])
-    with open('individual_marks.csv', 'w') as csvFile:
+    with open('individual_marks_test.csv', 'w') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerows(all_rows)
     csvFile.close()
