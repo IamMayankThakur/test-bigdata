@@ -1,0 +1,19 @@
+relational algorithms inn map reduce:
+analytics; map reduce for parallel comp and scalability;
+Mining of massive data sets;
+infolab
+relations:table, tuples and attributes
+selection, projection,union,natural join,grouping,aggregation
+	SELECT *
+	FROM Table
+	WHERE Role = Coach
+
+	SELECT Name
+	FROM Table
+	WHERE Role = Coach
+
+	SELECT count(*)
+	FROM Table
+	WHERE Role = Coach
+
+trying to perfor such a query on a file stored in hdfs
