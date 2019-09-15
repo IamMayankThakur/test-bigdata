@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.Partitioner;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class BD_444_459_489 {
+public class BD_2362_2415_2416_2491 {
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, Text> {
 
@@ -109,7 +109,7 @@ public class BD_444_459_489 {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         conf.set("mapred.textoutputformat.separator", ",");
-        Job job = Job.getInstance(conf, "BD_444_459_489");
+        Job job = Job.getInstance(conf, "BD_2362_2415_2416_2491");
         job.setJarByClass(BD_1348_1576_1597.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setMapOutputValueClass(Text.class);

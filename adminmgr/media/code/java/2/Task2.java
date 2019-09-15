@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Iterator;
 
-public class BD_444_459_489 {
+public class BD_2362_2415_2416_2491 {
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, Text> {
 
@@ -97,7 +97,7 @@ public class BD_444_459_489 {
         Configuration conf = new Configuration();
         conf.set("mapred.textoutputformat.separator", ",");
 
-        Job job = Job.getInstance(conf, "BD_444_459_489");
+        Job job = Job.getInstance(conf, "BD_2362_2415_2416_2491");
         job.setJarByClass(BD_1348_1576_1597.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setMapOutputValueClass(Text.class);
