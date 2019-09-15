@@ -1,4 +1,4 @@
-ss<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <!--
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,10 +23,11 @@ ss<?xml version="1.0" encoding="UTF-8"?>
 </property>
 <property>
 <name>dfs.namenode.name.dir</name>
-<value>file:/usr/local/hadoop/yarn_data/hdfs/namenode</value>
+<value>file:/usr/local/hadoop_space/hdfs/namenode</value>
 </property>
 <property>
 <name>dfs.datanode.data.dir</name>
-<value>file:/usr/local/hadoop/yarn_data/hdfs/datanode</value>
+<value>file:/usr/local/hadoop_space/hdfs/datanode</value>
 </property>
+
 </configuration>
