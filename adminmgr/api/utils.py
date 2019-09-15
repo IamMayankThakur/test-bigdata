@@ -1,8 +1,10 @@
 # import pandas as pd
 from celery import shared_task
 
-from notifymgr.mail import send_mail
+from notifymgr.mail import send_mail, _send
 from testmgr.executecode import exe
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 @shared_task
@@ -31,7 +33,7 @@ def run(submission_id):
 
 
 import csv
-from api.models import SubmissionAssignmentOne
+from api.models import SubmissionAssignmentOne, Team
 from django.db.models import Max
 import pdb
 
@@ -77,3 +79,54 @@ def get_max_marks():
         writer = csv.writer(csvFile)
         writer.writerows(all_rows)
     csvFile.close()
+
+
+def send_plagiarism_mail():
+    ass1_list = ['BD_1385_1602_1667_1771',
+                 'BD_135_703_2371',
+                 'BD_252_243_55_759',
+                 'BD_051_272_1339',
+                 'BD_096_648_973_1910',
+                 'BD_0912_1279_1350',
+                 'BD_1580_740_780',
+                 'BD_0079_0954_1125',
+                 'BD_0012_0792_0948_1324',
+                 'BD_133_223_1002_1128',
+                 'BD_0160_1274_1540_1801',
+                 'BD_228_278_1110_1593',
+                 'BD_167_260_770_788',
+                 'BD_167_260_770_788',
+                 'BD_167_260_770_788',
+                 'BD_665_962_725',
+                 'BD_85_130_185_279',
+                 'BD_665_1113_1809',
+                 'BD_830_1094_1439_2391',
+                 'BD_1595_1702_0194',
+                 'BD_228_278_1110_1593',
+                 'BD_85_130_185_279',
+                 'BD_85_130_185_279',
+                 'BD_1595_1702_0194',
+                 'BD_62_1136',
+                 'BD_85_130_185_279',
+                 'BD_830_1094_1439_2391',
+                 'BD_498_957_959',
+                 'BD_1348_1576_1597',
+                 'BD_444_459_489']
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "Meet KVS Sir"
+    message["From"] = "noreplybigdata@gmail.com"
+
+    html = "Hi, <br> Please meet KVS Sir ASAP without fail. This is in lieu of the plagiarism report. It is better to meet him with your complete team along with the team you had a plagiarism match with."
+
+    part = MIMEText(html, "html")
+    message.attach(part)
+    _send("mayankthakur@pesu.pes.edu", message)
+    for team_name in ass1_list:
+        try:
+            team = Team.objects.get(team_name=team_name)
+            emails = [team.member_1, team.member_2, team.member_3, team.member_4]
+            for email in emails:
+                if email != 'nan':
+                    _send(email, message)
+        except:
+            pass
