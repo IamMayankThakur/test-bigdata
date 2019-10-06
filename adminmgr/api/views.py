@@ -1,13 +1,17 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team
 from .utils import run_assignment_one, run_assignment_two
+# from . import urls
+
+class Index(View):
+    def get(self, request):
+        return redirect('/assignment2')
 
 
-# noinspection PyMethodMayBeStatic
 class CodeUploadAssignmentOne(View):
     def get(self, request):
         return render(request, 'assignment1.html')
@@ -108,8 +112,11 @@ class CodeUploadAssignmentTwo(View):
             print(e)
             return HttpResponse("Could not accept submission, enter valid details")
         try:
-            run_assignment_two(submission.id)
+            run_assignment_two.apply_async([submission.id])
         except Exception as e:
             print(e)
             return HttpResponse("Cannot push submission in the queue")
-                 
+        return HttpResponse(
+            "Done. You will receive your results via an email. The submission id is " +
+            str(submission.id)
+            + ". Use this submission id to get in touch in case you dont get an email result.")

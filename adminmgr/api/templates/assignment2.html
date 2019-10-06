@@ -27,7 +27,8 @@
         <h2>Assignment 2 - Spark</h2>
         <br>
         <br>
-        <form action="" class="form-horizontal">
+        <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="form-group row">
                 <label for="team_name" class="control-label col-sm-2 font-weight-bolder">Team Name:</label>
                 <div class="col-sm-10">
@@ -39,7 +40,7 @@
             <div class="form-group row">
                 <label for="file1" class="control-label col-sm-2 font-weight-bolder">Task 1 File:</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" id="file1">
+                    <input type="file" class="form-control" id="file1" name="code_file_task_1">
                 </div>
             </div>
             <br>
@@ -48,7 +49,7 @@
             <div class="form-group row">
                 <label for="file2" class="control-label col-sm-2 font-weight-bolder">Task 2 File:</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" id="file2">
+                    <input type="file" class="form-control" id="file2" name="code_file_task_2">
                 </div>
             </div>
             <br>
