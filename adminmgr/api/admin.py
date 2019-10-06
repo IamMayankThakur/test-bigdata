@@ -6,4 +6,4 @@ from .models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo
 admin.site.site_header = 'Big Data Assignment'
 
 admin.site.register([Team, SubmissionAssignmentOne, SubmissionAssignmentTwo])
-admin.site.unregister([Group, User])
+#admin.site.unregister([Group, User])
