@@ -2,12 +2,15 @@ import smtplib
 import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from api.models import SubmissionAssignmentOne
+from api.models import SubmissionAssignmentOne, SubmissionAssignmentTwo
 
 
-def send_mail(submission_id):
+def send_mail(submission_id, assignment_no):
     print(" In send_mail ")
-    sub = SubmissionAssignmentOne.objects.get(id=submission_id)
+    if assignment_no == 1:
+        sub = SubmissionAssignmentOne.objects.get(id=submission_id)
+    if assignment_no == 2:
+        sub = SubmissionAssignmentTwo.objects.get(id=submission_id)
     team = sub.team
     message = MIMEMultipart("alternative")
     message["Subject"] = "Big Data Assignment Result"
@@ -28,7 +31,7 @@ def send_mail(submission_id):
 
     emails = [team.member_1, team.member_2, team.member_3, team.member_4]
     for email in emails:
-        if email != '':
+        if email != 'nan':
             _send(email, message)
 
 
