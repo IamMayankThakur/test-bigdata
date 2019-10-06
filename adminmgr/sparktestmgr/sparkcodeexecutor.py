@@ -1,4 +1,6 @@
 import os
+
+
 def execute_test(code_path, input_path, output_path):
     command = "" + code_path + " "
     command += input_path
@@ -9,7 +11,7 @@ def execute_test(code_path, input_path, output_path):
         message += "Error compiling code"
         return message
 
-    if x!=0:
+    if x != 0:
 
 
 def execute_test_tasks(code_path, task_number, n_test_cases):
@@ -26,4 +28,5 @@ def exe(submission_id):
     score_1 = 0
     score_2 = 0
 
-    mail_message_1 += execute_test_task(submission.code_file_python_task_1.path, 1, 2)
+    mail_message_1 += execute_test_task(
+        submission.code_file_python_task_1.path, 1, 2)
