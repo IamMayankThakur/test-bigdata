@@ -37,7 +37,7 @@ def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
     scores = []
     iterations = [[18, 23], [28, 18]]
     for i in range(n_test_cases):
-        message += "Test case " + str(i) + "\n"
+        message += "Test case " + str(i) + "<br>"
         result_path = os.path.join(output_path, str(i))
         input_path = os.path.join(BASE_PATH, DATASET_BASE_PATH, str(task_number), str(i) + ".txt")
         setters_path = os.path.join(BASE_PATH, SETTERS_BASE_PATH, str(task_number), str(i) + ".txt")
@@ -45,17 +45,17 @@ def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
         output = execute_test(code_path, input_path, result_path, setters_path, iterations[task_number - 1][i])
         message += output[0]
         if output[1] == 0:
-            message += "Failed test case\n"
+            message += "Failed test case<br>"
         else:
-            message += "Passed test case\n"
+            message += "Passed test case<br>"
         scores.append(output[1])
     return [message, scores]
 
 
 def exe(submission_id):
     submission = SubmissionAssignmentTwo.objects.get(id=submission_id)
-    mail_message_1 = "Task 1\n"
-    mail_message_2 = "Task 2\n"
+    mail_message_1 = "Task 1<br>"
+    mail_message_2 = "Task 2<br>"
     score_1 = 0
     score_2 = 0
 
@@ -75,15 +75,15 @@ def exe(submission_id):
 
     output = execute_test_tasks(
         submission.code_file_task_1.path, 1, 2, output_path)
-    mail_message_1 += output[0]
+    mail_message_1 += output[0] + "<br>"
     score_1 = sum(output[1])
 
     output = execute_test_tasks(
         submission.code_file_task_2.path, 2, 2, output_path)
-    mail_message_2 += output[0]
+    mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
     submission.score_1 = score_1
     submission.score_2 = score_2
-    submission.remarks = mail_message_1 + "\n" + mail_message_2 + "\n"
+    submission.remarks = mail_message_1 + "<br> <br>" + mail_message_2
     submission.save()
