@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team
-from .utils import run_assignment_one, run_assignment_two
+# from .utils import run_assignment_one, run_assignment_two
+from .utils import run_assignment_two
 # from . import urls
 
 class Index(View):

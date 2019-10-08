@@ -6,21 +6,22 @@ import pandas as pd
 from celery import shared_task
 
 from notifymgr.mail import send_mail, _send
-from testmgr.executecode import exe
+# from testmgr.executecode import exe
+from sparktestmgr.sparkcodeexecutor import exe
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-@shared_task
+''''@shared_task
 def run_assignment_one(submission_id):
     exe(submission_id=submission_id)
     send_mail(submission_id, 1)
-    print("Submission Evaluation Complete")
+    print("Submission Evaluation Complete")'''
 
 
 @shared_task
 def run_assignment_two(submission_id):
-    # TODO: Run on spark
+    exe(submission_id=submission_id)
     send_mail(submission_id, 2)
     print("Submisssion Evaluation Complete")
 
