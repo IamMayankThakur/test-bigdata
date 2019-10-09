@@ -12,11 +12,11 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-''''@shared_task
+@shared_task
 def run_assignment_one(submission_id):
-    exe(submission_id=submission_id)
+    # exe(submission_id=submission_id)
     send_mail(submission_id, 1)
-    print("Submission Evaluation Complete")'''
+    print("Submission Evaluation Complete")
 
 
 @shared_task

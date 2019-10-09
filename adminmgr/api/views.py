@@ -4,13 +4,12 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team
-# from .utils import run_assignment_one, run_assignment_two
-from .utils import run_assignment_two
+from .utils import run_assignment_one, run_assignment_two
 # from . import urls
 
 class Index(View):
     def get(self, request):
-        return redirect('/assignment2')
+        return HttpResponse("Goto the correct url. Try /assignment2")
 
 
 class CodeUploadAssignmentOne(View):

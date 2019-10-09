@@ -93,7 +93,7 @@ def exe(submission_id):
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
-    date = datetime.date(2019, 10, 12)
+    date = datetime.date(2019, 10, 13)
     if datetime.datetime.now() > date:
         score_1 -= 1
         score_2 -= 1
