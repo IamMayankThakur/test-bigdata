@@ -2,7 +2,6 @@ from api.models import SubmissionAssignmentTwo
 from .config import *
 import errno
 import os
-import datetime
 
 
 def execute_test(code_path, input_path, result_path, setters_path, iterations, weights):
@@ -43,10 +42,8 @@ def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
     for i in range(n_test_cases):
         message += "Test case " + str(i) + "<br>"
         result_path = os.path.join(output_path, str(i))
-        input_path = os.path.join(
-            BASE_PATH, DATASET_BASE_PATH, str(task_number), str(i) + ".txt")
-        setters_path = os.path.join(
-            BASE_PATH, SETTERS_BASE_PATH, str(task_number), str(i) + ".txt")
+        input_path = os.path.join(BASE_PATH, DATASET_BASE_PATH, str(task_number), str(i) + ".txt")
+        setters_path = os.path.join(BASE_PATH, SETTERS_BASE_PATH, str(task_number), str(i) + ".txt")
         os.makedirs(result_path, exist_ok=True)
         output = execute_test(code_path, input_path, result_path, setters_path, iterations[task_number - 1][i],
                               weights[task_number - 1][i])
@@ -66,8 +63,7 @@ def exe(submission_id):
     score_1 = 0
     score_2 = 0
 
-    output_path = os.path.join(
-        TEAM_BASE_PATH, submission.team.team_name, str(submission_id))
+    output_path = os.path.join(TEAM_BASE_PATH, submission.team.team_name, str(submission_id))
     print("Output path is " + output_path)
     try:
         os.makedirs(output_path, exist_ok=True)
@@ -93,10 +89,6 @@ def exe(submission_id):
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
-    date = datetime.date(2019, 10, 12)
-    if datetime.datetime.now() > date:
-        score_1 -= 1
-        score_2 -= 1
     print("COMPLETED SECOND TASK")
 
     submission.score_1 = score_1

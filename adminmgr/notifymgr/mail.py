@@ -17,13 +17,13 @@ def send_mail(submission_id, assignment_no):
     message["From"] = "noreplybigdata@gmail.com"
 
     html = "Hi \n Your bigdata submission with submission id " + str(submission_id) + " has been evaluated \n" \
-    "<html> " \
-    "<body> " \
-    "<h3> Scores </h3> " \
-    "<p> Task 1: " + str(sub.score_1) + "</p>" + "<p> Task 2: " + str(sub.score_2) + "</p>" + "<p> Task 3: " + str(sub.score_3) + "</p>" + "<p> Task 4: " + str(sub.score_4) + "</p>" \
-    "<h3> Remarks </h3> " + str(sub.remarks)
-    "</body> "  \
-    "</html>"
+        "<html> " \
+        "<body> " \
+        "<h3> Scores </h3> " \
+        "<p> Task 1: " + str(sub.score_1) + "</p>" + "<p> Task 2: " + str(sub.score_2) + "</p>"  \
+        "<h3> Remarks </h3> " + str(sub.remarks) + "<br>" \
+        "</body> "  \
+        "</html>"
 
     part = MIMEText(html, "html")
 
