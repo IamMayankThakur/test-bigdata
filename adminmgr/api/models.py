@@ -59,10 +59,8 @@ class SubmissionAssignmentTwo(models.Model):
     submitted_on = models.DateTimeField(auto_now=True)
     code_file_task_1 = models.FileField(blank=False, upload_to='code/A2/python/task1')
     code_file_task_2 = models.FileField(blank=False, upload_to='code/A2/python/task2')
-    score_1 = models.IntegerField(default=-1)
-    score_2 = models.IntegerField(default=-1)
-    score_3 = models.IntegerField(default=-1)
-    score_4 = models.IntegerField(default=-1)
+    score_1 = models.FloatField(default=-1)
+    score_2 = models.FloatField(default=-1)
     remarks = models.TextField(null=True, blank=True, default="None")
 
     def __str__(self):
