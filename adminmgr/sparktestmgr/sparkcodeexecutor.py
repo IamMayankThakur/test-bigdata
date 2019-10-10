@@ -90,7 +90,7 @@ def exe(submission_id):
     print("COMPLETED FIRST TASK")
 
     output = execute_test_tasks(
-        submission.code_file_task_2.path, 2, 4, output_path)
+        submission.code_file_task_1.path, 2, 4, output_path)
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
