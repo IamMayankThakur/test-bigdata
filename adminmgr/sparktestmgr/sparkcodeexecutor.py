@@ -94,10 +94,10 @@ def exe(submission_id):
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
-    date = datetime.date(2019, 10, 13)
+    date = datetime.datetime(2019, 10, 13)
     if datetime.datetime.now() > date:
-        score_1 -= 1
-        score_2 -= 1
+        score_1 = score_1 * 0.75
+        score_2 = score_2 * 0.75
     print("COMPLETED SECOND TASK")
 
     submission.score_1 = score_1
