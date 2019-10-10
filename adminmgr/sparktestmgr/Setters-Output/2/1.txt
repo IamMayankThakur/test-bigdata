@@ -1,6 +1,3 @@
-Converged
-Iterations 18
-Weights 0.8
 DA Warner,1.622980380118
 SE Marsh,1.482794042852
 RV Uthappa,1.407050129772

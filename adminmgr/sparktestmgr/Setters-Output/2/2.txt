@@ -1,5 +1,3 @@
-Iterations 10
-Weights 0.8
 RA Jadeja,1.678563224634
 JH Kallis,1.626736678357
 DJ Bravo,1.573164678179

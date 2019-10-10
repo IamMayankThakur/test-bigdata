@@ -1,5 +1,3 @@
-Iterations 10
-Weights 0.8
 DJ Bravo,1.521209056069
 SR Watson,1.237642273007
 RA Jadeja,1.181240799816

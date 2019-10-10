@@ -1,6 +1,3 @@
-Converged
-Iterations 18
-Weights 0.8
 DJ Bravo,1.514723941869
 SR Watson,1.233311620917
 RA Jadeja,1.177377978563

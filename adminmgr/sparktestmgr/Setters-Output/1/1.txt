@@ -1,6 +1,3 @@
-Converged
-Iterations 28
-Weights 0.8
 SL Malinga,3.555903992694
 UT Yadav,3.073330580967
 DJ Bravo,2.681155005469

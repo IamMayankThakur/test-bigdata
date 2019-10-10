@@ -1,6 +1,3 @@
-Converged
-Iterations 6
-Weights 0.1
 DJ Bravo,1.335878886747
 RA Jadeja,1.315346848656
 JH Kallis,1.280213000640
