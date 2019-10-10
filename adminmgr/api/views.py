@@ -93,7 +93,7 @@ class CodeUploadAssignmentTwo(View):
         try:
             t_name = request.POST["team_name"]
             code_file_task_1 = request.FILES["code_file_task_1"]
-            code_file_task_2 = request.FILES["code_file_task_2"]
+            # code_file_task_2 = request.FILES["code_file_task_2"]
         except IndexError as e:
             return HttpResponse("Unable to accept submission. Enter valid details")
         try:
@@ -106,7 +106,6 @@ class CodeUploadAssignmentTwo(View):
             submission = SubmissionAssignmentTwo(
                 team=team,
                 code_file_task_1=code_file_task_1,
-                code_file_task_2=code_file_task_2
             )
             submission.save()
         except Exception as e:
