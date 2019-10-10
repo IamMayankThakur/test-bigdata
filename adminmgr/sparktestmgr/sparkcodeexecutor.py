@@ -9,8 +9,10 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
     # command = "/opt/spark/spark-2.4.4-bin-hadoop2.7/bin/spark-submit"
 
     command = SPARK_BASE_PATH
-    command += " " + code_path
-    command += " " + input_path
+    command += " " + "file://"
+    command += code_path
+    command += " " + "file://"
+    command += input_path
     command += " " + str(iterations)
     command += " " + str(weights)
     command += " " + ">" + " " + result_path + "/op.txt"
