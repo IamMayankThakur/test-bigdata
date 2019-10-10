@@ -20,8 +20,7 @@ def send_mail(submission_id, assignment_no):
     "<html> " \
     "<body> " \
     "<h3> Scores </h3> " \
-    "<p> Task 1: " + str(sub.score_1) + "</p>" + "<p> Task 2: " + str(sub.score_2) + "</p>" + "<p> Task 3: " + str(sub.score_3) + "</p>" + "<p> Task 4: " + str(sub.score_4) + "</p>" \
-    "<h3> Remarks </h3> " + str(sub.remarks)
+    "<p> Task 1: " + str(sub.score_1) + "</p>" + "<p> Task 2: " + str(sub.score_2) + "</p>" + "<h3> Remarks </h3> " + str(sub.remarks)
     "</body> "  \
     "</html>"
 
