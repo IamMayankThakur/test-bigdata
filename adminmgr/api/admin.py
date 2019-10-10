@@ -9,7 +9,7 @@ admin.site.site_header = 'Big Data Assignment'
 
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'team', 'submitted_on')
-    list_filter = ('id', 'submitted_on')
+    list_filter = ('team', 'submitted_on')
 
 
 admin.site.register(SubmissionAssignmentTwo, AssignmentAdmin)
