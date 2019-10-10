@@ -29,7 +29,7 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
     x = os.system("diff -wBZ " + result_path+"/op.txt" + " " + setters_path)
     print("diff -wBZ " + result_path+"/op.txt" + " " + setters_path)
     if x == 0:
-        score = 1
+        score = 0.5
     else:
         score = 0
     return [message, score]
@@ -38,13 +38,14 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
 def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
     message = ""
     scores = []
-    iterations = [[0, 0], [0, 0]]
-    weights = [[0, 0], [0, 0]]
+    iterations = [[0, 0, 10, 0], [0, 0, 10, 0]]
+    weights = [[0, 0, 0, 10], [0, 0, 0, 10]]
+    dataset = [[0, 1, 0, 0], [0, 1, 0, 0]]
     for i in range(n_test_cases):
         message += "Test case " + str(i) + "<br>"
         result_path = os.path.join(output_path, str(i))
-        input_path = os.path.join(
-            BASE_PATH, DATASET_BASE_PATH, str(task_number), str(i) + ".txt")
+        input_path = os.path.join(BASE_PATH, DATASET_BASE_PATH, str(
+            task_number), str(dataset[task_number - 1][i]) + ".txt")
         setters_path = os.path.join(
             BASE_PATH, SETTERS_BASE_PATH, str(task_number), str(i) + ".txt")
         os.makedirs(result_path, exist_ok=True)
@@ -82,14 +83,14 @@ def exe(submission_id):
             pass
 
     output = execute_test_tasks(
-        submission.code_file_task_1.path, 1, 2, output_path)
+        submission.code_file_task_1.path, 1, 4, output_path)
     mail_message_1 += output[0] + "<br>"
     score_1 = sum(output[1])
 
     print("COMPLETED FIRST TASK")
 
     output = execute_test_tasks(
-        submission.code_file_task_2.path, 2, 2, output_path)
+        submission.code_file_task_2.path, 2, 4, output_path)
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
