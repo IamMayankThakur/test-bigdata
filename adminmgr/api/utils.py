@@ -27,7 +27,7 @@ def run_assignment_two(submission_id):
 
 
 def port_csv_to_db():
-    csv_path = "/home/ubuntu/test-bigdata/data_reg.csv"
+    csv_path = "/home/ubuntu/test-bigdata/new_bd_resp.csv"
     df = pd.read_csv(csv_path)
     for index, row in df.iterrows():
         try:
