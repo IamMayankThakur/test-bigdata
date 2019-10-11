@@ -41,8 +41,8 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
 def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
     message = ""
     scores = []
-    iterations = [[0, 0, 10, 0], [0, 0, 10, 0]]
-    weights = [[0, 0, 0, 10], [0, 0, 0, 10]]
+    iterations = [[0, 0, 10, 0], [0, 5, 10, 0]]
+    weights = [[0, 0, 0, 10], [0, 50, 0, 10]]
     dataset = [[0, 1, 0, 0], [0, 1, 0, 0]]
     for i in range(n_test_cases):
         message += "Test case " + str(i) + "<br>"
@@ -86,14 +86,14 @@ def exe(submission_id):
             pass
 
     output = execute_test_tasks(
-        submission.code_file_task_1.path, 1, 4, output_path)
+        submission.code_file_task_1.path, 1, 2, output_path)
     mail_message_1 += output[0] + "<br>"
     score_1 = sum(output[1])
 
     print("COMPLETED FIRST TASK")
 
     output = execute_test_tasks(
-        submission.code_file_task_1.path, 2, 4, output_path)
+        submission.code_file_task_1.path, 2, 2, output_path)
     mail_message_2 += output[0] + "<br>"
     score_2 = sum(output[1])
 
