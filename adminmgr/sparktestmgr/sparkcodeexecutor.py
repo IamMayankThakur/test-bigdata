@@ -28,8 +28,8 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
     message += "Executed successfully " + " "
 
     score = 0
-    x = os.system("diff -wBZ " + result_path+"/op.txt" + " " + setters_path)
-    print("diff -wBZ " + result_path+"/op.txt" + " " + setters_path)
+    x = os.system("diff -I '[0-9]' " + result_path+"/op.txt" + " " + setters_path)
+    print("diff -I '[0-9]' " + result_path+"/op.txt" + " " + setters_path)
     if x == 0:
         score = 0.5
     else:
@@ -45,7 +45,7 @@ def execute_test_tasks(code_path, task_number, n_test_cases, output_path):
     dataset = [[0, 1, 0, 0], [0, 1, 0, 0]]
     for i in range(n_test_cases):
         message += "Test case " + str(i) + "<br>"
-        result_path = os.path.join(output_path, str(i))
+        result_path = os.path.join(output_path, str(task_number), str(i))
         input_path = os.path.join(BASE_PATH, DATASET_BASE_PATH, str(
             task_number), str(dataset[task_number - 1][i]) + ".txt")
         setters_path = os.path.join(
