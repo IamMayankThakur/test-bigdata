@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/pr_5A9MYLk.py", line 45
+    sys.exit(-1)
+               ^
+TabError: inconsistent use of tabs and spaces in indentation

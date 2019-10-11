@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_151_987_1496_1503.py", line 82, in <module>
+    filtered_ranks = len(ranks_joined.collect())
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 816, in collect
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1255, in __call__
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/context.py", line 270, in signal_handler
+KeyboardInterrupt
