@@ -32,7 +32,7 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
     x = os.system("diff -I '[0-9]' " + result_path+"/op.txt" + " " + setters_path)
     print("diff -I '[0-9]' " + result_path+"/op.txt" + " " + setters_path)
     if x == 0:
-        score = 0.5
+        score = 1
     else:
         score = 0
     return [message, score]
