@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_72_206_262_704_i6OjpTV.py", line 41, in <module>
+    notconv = not_converged()
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_72_206_262_704_i6OjpTV.py", line 12, in not_converged
+    return old_ranks.join(ranks).map(lambda x : abs(x[1][0] - x[1][1]) > 0.0001).reduce(lambda x, y : x or y)     #return 1 if any have not converged
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 844, in reduce
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 816, in collect
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1255, in __call__
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/context.py", line 270, in signal_handler
+KeyboardInterrupt
