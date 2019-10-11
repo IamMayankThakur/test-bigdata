@@ -9,6 +9,7 @@ def execute_test(code_path, input_path, result_path, setters_path, iterations, w
     # command = "/opt/spark/spark-2.4.4-bin-hadoop2.7/bin/spark-submit"
 
     command = SPARK_BASE_PATH
+    command += " " + "--driver-memory 5g --executor-memory 5g"
     command += " " + "file://"
     command += code_path
     command += " " + "file://"
