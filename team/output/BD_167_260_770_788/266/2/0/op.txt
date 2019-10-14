@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_167_260_770_788.py", line 24
+    def setRank(x):
+      ^
+SyntaxError: invalid syntax

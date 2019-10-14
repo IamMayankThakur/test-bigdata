@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_114_345_411_727_FRIabAH.py", line 45
+    if(int(sys.argv[3]==0);
+                          ^
+SyntaxError: invalid syntax

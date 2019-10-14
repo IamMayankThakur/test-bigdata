@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_174_261_754_gbLyDiN.py", line 58
+    weight = 0.8
+               ^
+TabError: inconsistent use of tabs and spaces in indentation

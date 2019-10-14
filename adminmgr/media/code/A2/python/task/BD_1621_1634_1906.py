@@ -40,7 +40,7 @@ def sum1(z):
 
 
 if __name__ == "__main__":
-        if len(sys.argv) != 3:
+        if len(sys.argv) != 4:
 	        print("Usage: pagerank <number_iterations> <rank_weights>", file=sys.stderr)
                 sys.exit(-1)
 
@@ -52,42 +52,58 @@ if __name__ == "__main__":
 
         lines = spark.read.text(sys.argv[1]).rdd.map(lambda r: r[0])
 
-        links = lines.map(lambda batsman: parseNeighbors(batsman)).distinct().groupByKey().cache()
+        links = lines.map(lambda batsman: parseNeighbors(batsman)).distinct().groupByKey()
         
-        links1=lines.map(lambda batsman: parseNeighbors1(batsman)).distinct().groupByKey().cache()
+        links1=lines.map(lambda batsman: parseNeighbors1(batsman)).distinct().groupByKey()
         
         
 	link=links.map(lambda x:(x[0],float(sum1(list(x[1])))))
         #print(links.collect())
         ranks = link.map(lambda url_neighbors: (url_neighbors[0],url_neighbors[1]))
         #print(ranks.collect())
+        iterations=0
+        if float(sys.argv[3]) != 0:
+		slope = float(sys.argv[3]) / 100
+	else:
+		slope = float(80) / 100
+
+	intercept = 1 - slope
+        if int(sys.argv[2])==0:
         
       
         
         
-        flag=0
-        iterations=0
-        while flag == 0 and iterations < 2000:
-            iterations = iterations + 1
-            prev_ranks = ranks
-            contribs = links1.join(ranks).flatMap(
-            lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
-            
-            
-
+            flag=0
+            iterations=0
+            while flag == 0 and iterations < 2000:
+                iterations = iterations + 1
+                prev_ranks = ranks
+                contribs = links1.join(ranks).flatMap(
+                lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
+                
             
 
-            ranks = contribs.reduceByKey(add).mapValues(lambda rank:float(rank * 0.80 + 0.20))
-            r1=prev_ranks
-            r2=ranks
-            flag=1
-            comp = r1.leftOuterJoin(r2).map(lambda r: diff(r))
-            for x in comp.collect():
-                if x is not None:
-                    if float(x[1]) >= 0.0001:
-                        flag=0
+            
+                
+                ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * slope + intercept)
+                r1=prev_ranks
+                r2=ranks
+                flag=1
+                comp = r1.leftOuterJoin(r2).map(lambda r: diff(r))
+                for x in comp.collect():
+                    if x is not None:
+                        if float(x[1]) >= 0.0001:
+                            flag=0
+        elif int(sys.argv[2])>0:
+            iterations=0
+            for iteration in range(int(sys.argv[2])):
+                iterations = iterations + 1
+                contribs = links1.join(ranks).flatMap(
+                lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
+                
+                ranks = contribs.reduceByKey(add).mapValues(lambda rank:  rank * slope + intercept)
         rankss=ranks.sortBy(lambda a:(-a[1],a[0]))
-        print("%d iterations \n" %(iterations))
+        #print("%d iterations \n" %(int(sys.argv[2])))
         for (link, rank) in rankss.collect():
             #print(link + ", " + "{:.12f}".format(rank))
              print("%s,%0.12f" % (link, rank))

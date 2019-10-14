@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_hWq2gGY.py", line 100, in <module>
+    if(abs(i[1]- d[i[0]])>=0.0001):
+KeyError: 'Sandeep Sharma'

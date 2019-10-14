@@ -66,16 +66,13 @@ if __name__ == "__main__":
                 if(flag3==1):
                     for (link1, rank1) in prev_ranks.collect():
                         if(link1==link and rank1-rank>0):
-                            if(rank1-rank<0.0001):
-                                k=k+1
-                        elif(link1==link and rank1-rank<=0):
-                            if(rank-rank1<0.0001):
+                            if(abs(rank1-rank)<0.0001):
                                 k=k+1
             if(k==count_1):
                # print(count)
                 ranks=sorted(ranks.collect(),key=lambda sort: (-sort[1],sort[0]))
                 for (link, rank) in ranks:
-                    print(link,rank,sep=",")
+                    print(link,round(rank,12),sep=",")
                 flag2=1
     else:
         for iteration in range(int(sys.argv[2])):
@@ -90,6 +87,6 @@ if __name__ == "__main__":
 
         ranks=sorted(ranks.collect(),key=lambda sort: (-sort[1],sort[0]))
         for (link, rank) in ranks:
-            print(link,rank,sep=",")    
+            print(link,round(rank,12),sep=",")    
     spark.stop()
 

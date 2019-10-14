@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_055_243_252_759.py.py", line 54
+    ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * 0.80 + 0.20) 
+                                                                                ^
+TabError: inconsistent use of tabs and spaces in indentation

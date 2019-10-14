@@ -1,0 +1,114 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_BLfOKS1.py", line 99, in <module>
+    for i,j in zip(ranks.collect(),prev.collect()):
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 816, in collect
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling z:org.apache.spark.api.python.PythonRDD.collectAndServe.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 9.0 failed 4 times, most recent failure: Lost task 1.3 in stage 9.0 (TID 14, 127.0.0.1, executor 0): org.apache.spark.api.python.PythonException: Traceback (most recent call last):
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/worker.py", line 377, in main
+    process()
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/worker.py", line 372, in process
+    serializer.dump_stream(func(split_index, iterator), outfile)
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 2499, in pipeline_func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 2499, in pipeline_func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 352, in func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 1861, in combineLocally
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/shuffle.py", line 238, in mergeValues
+    for k, v in iterator:
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_BLfOKS1.py", line 19, in computeContribs
+    yield (url, rank / num_urls)
+TypeError: unsupported operand type(s) for /: 'NoneType' and 'int'
+
+	at org.apache.spark.api.python.BasePythonRunner$ReaderIterator.handlePythonException(PythonRunner.scala:456)
+	at org.apache.spark.api.python.PythonRunner$$anon$1.read(PythonRunner.scala:592)
+	at org.apache.spark.api.python.PythonRunner$$anon$1.read(PythonRunner.scala:575)
+	at org.apache.spark.api.python.BasePythonRunner$ReaderIterator.hasNext(PythonRunner.scala:410)
+	at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+	at scala.collection.Iterator$GroupedIterator.fill(Iterator.scala:1124)
+	at scala.collection.Iterator$GroupedIterator.hasNext(Iterator.scala:1130)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:409)
+	at org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:125)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)
+	at org.apache.spark.scheduler.Task.run(Task.scala:123)
+	at org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1889)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1877)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1876)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1876)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:926)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:926)
+	at scala.Option.foreach(Option.scala:257)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:926)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2110)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2059)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2048)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:737)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2061)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2082)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2101)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2126)
+	at org.apache.spark.rdd.RDD$$anonfun$collect$1.apply(RDD.scala:945)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+	at org.apache.spark.rdd.RDD.collect(RDD.scala:944)
+	at org.apache.spark.api.python.PythonRDD$.collectAndServe(PythonRDD.scala:166)
+	at org.apache.spark.api.python.PythonRDD.collectAndServe(PythonRDD.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.spark.api.python.PythonException: Traceback (most recent call last):
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/worker.py", line 377, in main
+    process()
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/worker.py", line 372, in process
+    serializer.dump_stream(func(split_index, iterator), outfile)
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 2499, in pipeline_func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 2499, in pipeline_func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 352, in func
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/rdd.py", line 1861, in combineLocally
+  File "/opt/spark/spark-2.4.4-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/shuffle.py", line 238, in mergeValues
+    for k, v in iterator:
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_BLfOKS1.py", line 19, in computeContribs
+    yield (url, rank / num_urls)
+TypeError: unsupported operand type(s) for /: 'NoneType' and 'int'
+
+	at org.apache.spark.api.python.BasePythonRunner$ReaderIterator.handlePythonException(PythonRunner.scala:456)
+	at org.apache.spark.api.python.PythonRunner$$anon$1.read(PythonRunner.scala:592)
+	at org.apache.spark.api.python.PythonRunner$$anon$1.read(PythonRunner.scala:575)
+	at org.apache.spark.api.python.BasePythonRunner$ReaderIterator.hasNext(PythonRunner.scala:410)
+	at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+	at scala.collection.Iterator$GroupedIterator.fill(Iterator.scala:1124)
+	at scala.collection.Iterator$GroupedIterator.hasNext(Iterator.scala:1130)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:409)
+	at org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:125)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)
+	at org.apache.spark.scheduler.Task.run(Task.scala:123)
+	at org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	... 1 more
+

@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_2384_2390_2412_LsiLpUF.py", line 66
+    from __future__ import print_function
+    ^
+SyntaxError: from __future__ imports must occur at the beginning of the file

@@ -22,7 +22,7 @@ def compute(key,val):
 
 def frstFunction(urls):
     parts = re.split(r',', urls)
-    return parts[0],int(parts[2])/int(parts[3])
+    return parts[0],round(int(parts[2])/int(parts[3]),12)
 
 
 
@@ -73,24 +73,24 @@ if __name__ == "__main__":
     if(iterations!=0):
         for iteration in range(int(sys.argv[2])):
             contribs = links1.join(ranks).flatMap(lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
-            ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * percentage + 1-percentage)
+            ranks = contribs.reduceByKey(add).mapValues(lambda rank: round(rank * percentage + 1-percentage,12))
         x=0
         result=sorted(ranks.collect(),key=lambda y:(-y[1],y[0]))
 
     #Given 0 iterations as an arguement
     while(x>0):
         contribs = links1.join(ranks).flatMap(lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
-        ranks_2 = contribs.reduceByKey(add).mapValues(lambda rank: rank * percentage + 1-percentage)
+        ranks_2 = contribs.reduceByKey(add).mapValues(lambda rank: round(rank * percentage + 1-percentage,12))
         count=count+1
         result=sorted(ranks.collect(),key=lambda y:(-y[1],y[0]))
         result1=sorted(ranks_2.collect(),key=lambda y:(-y[1],y[0]))
         ranks=ranks_2#abs function is used to get absolute value of the difference
-        if(abs(result1[0][1]-result[0][1])<0.00001):
+        if(abs(result1[0][1]-result[0][1])<0.000001):
             x=0            
 
 
 
     for (link, rank) in result:
-        print("%s,%s" % (link, rank))
+        print("%s,%.12f" % (link, rank))
     #print("%d number of iterations happening"%(count))
     spark.stop()

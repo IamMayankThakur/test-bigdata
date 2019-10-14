@@ -22,7 +22,7 @@ Example Usage:
 bin/spark-submit examples/src/main/python/pagerank.py data/mllib/pagerank_data.txt 10
 """
 from __future__ import print_function
-
+import time
 import re
 import sys
 from operator import add
@@ -64,11 +64,13 @@ if __name__ == "__main__":
     #     URL         neighbor URL
     #     ...
     lines = spark.read.text(sys.argv[1]).rdd.map(lambda r: r[0])
+    #print(lines.collect())
     links = lines.map(lambda urls: parseNeighbors(urls)).groupByKey().cache()
     temp_rank= lines.map(lambda urls: parseNeighbors_rank(urls)).cache()
     consol= temp_rank.reduceByKey(add).cache()
     # Loads all URLs with other URL(s) link to from input file and initialize ranks of them to one.
     ranks = consol.map(lambda url_neighbors: (url_neighbors[0], max(url_neighbors[1],1)))
+    
     tempo_ranks=ranks
     count=0
     # Calculates and updates URL ranks continuously using PageRank algorithm.
@@ -127,8 +129,9 @@ if __name__ == "__main__":
     ranks=ranks.sortBy(lambda x:x[0],True)
     ranks=ranks.sortBy(lambda x:x[1],False)
     for (link, rank) in ranks.collect():
-        print("%s,%.12f,%d" % (link,float(rank),count))
-
+        print("%s,%.12f" % (link,float(rank)))
+	
+    
     spark.stop()
 #Problems:
 #Are the ranks in the ranks rdd in the same order as that of the batsman in the other rdd. i.e since were calculation ranks, are the ranks linked to the players correctly

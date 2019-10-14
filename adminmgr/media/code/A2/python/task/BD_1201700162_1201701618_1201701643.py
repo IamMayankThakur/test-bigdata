@@ -20,12 +20,12 @@ def findaverage(urls):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 4:
-		print("Usage: pagerank <file> <iterations><weight>", file=sys.stderr)
+		print("Usage: pagerank <file> <iterations> <weight>", file=sys.stderr)
 		sys.exit(-1)
 	spark = SparkSession.builder.appName("PythonPageRank").getOrCreate()
 	lines = spark.read.text(sys.argv[1]).rdd.map(lambda r: r[0])
-	links = lines.map(lambda urls: parseNeighbors(urls)).distinct().groupByKey().cache()
-	linksn = lines.map(lambda urls: findaverage(urls)).distinct().groupByKey().cache()
+	links = lines.map(lambda urls: parseNeighbors(urls)).distinct().groupByKey()
+	linksn = lines.map(lambda urls: findaverage(urls)).distinct().groupByKey()
 	ranks = linksn.map(lambda url_neighbors: (url_neighbors[0],max(1.0,sum(url_neighbors[1]))))
 	convergence=True
 	count=0

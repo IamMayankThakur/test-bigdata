@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_iNKIN58.py", line 97, in <module>
+    d[row[0]]=float(row[1])
+TypeError: float() argument must be a string or a number, not 'NoneType'

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_649_692_1744_1808_XkYrjrw.py", line 129, in <module>
+    thisPlayerRank = "%.4f" % thisPlayerRankList[0]
+IndexError: list index out of range

@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_780_740_1580.py", line 57
+    print("\n\n")'''
+                   ^
+SyntaxError: invalid syntax

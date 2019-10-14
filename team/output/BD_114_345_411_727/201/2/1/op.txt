@@ -1,0 +1,5 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 19922944 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/ubuntu/test-bigdata/adminmgr/hs_err_pid23406.log

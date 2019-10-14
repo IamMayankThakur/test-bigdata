@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_1621_1634_1906_Gv3vGqI.py", line 12
+    for batsman in batsmen:
+                          ^
+TabError: inconsistent use of tabs and spaces in indentation

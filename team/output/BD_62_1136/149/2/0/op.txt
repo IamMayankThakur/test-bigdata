@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_62_1136_i0yyd6C.py", line 46
+    prev=ranks
+             ^
+TabError: inconsistent use of tabs and spaces in indentation

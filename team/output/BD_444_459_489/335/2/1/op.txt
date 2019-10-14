@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_444_459_489.py", line 80, in <module>
+    for (link, rank) in rank_sort.collect():
+NameError: name 'rank_sort' is not defined

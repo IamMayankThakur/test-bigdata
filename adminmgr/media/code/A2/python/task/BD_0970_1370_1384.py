@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import re
 import sys
-from operator import add
+from ob_persenator import add
 
 from pyspark.sql import SparkSession
 
@@ -18,7 +18,7 @@ def parseNeighbors(urls):
 
 def parseNeighbors1(urls):
     parts = re.split(r',', urls)
-    return parts[1], float(parts[2])/float(parts[3])
+    return parts[1], round(float(parts[2])/float(parts[3]),12)
 
 
 if __name__ == "__main__":
@@ -34,41 +34,50 @@ if __name__ == "__main__":
 
     lines = spark.read.text(sys.argv[1]).rdd.map(lambda r: r[0])
 
-    links = lines.map(lambda urls: parseNeighbors(urls)).distinct().groupByKey().cache()
-    links_one = lines.map(lambda urls: parseNeighbors1(urls)).distinct().groupByKey().cache()
-    per = int(sys.argv[3])/100
+    links = lines.map(lambda urls: parseNeighbors(urls)).distinct().groupByKey()
+    links_one = lines.map(lambda urls: parseNeighbors1(urls)).distinct().groupByKey()
+    b_persen = int(sys.argv[3])/100
+    if(int(sys.argv[3]) == 0):
+        b_persen = .80
     i = 0
     ranks = links_one.map(lambda url_neighbors: (url_neighbors[0], max(1,sum(url_neighbors[1]))))
-    ranks_New = links_one.map(lambda url_neighbors: (url_neighbors[0], max(1,sum(url_neighbors[1]))))
-    result = [1 for i in range(len(ranks.collect()))]
+    new_ranks_b = links_one.map(lambda url_neighbors: (url_neighbors[0], max(1,sum(url_neighbors[1]))))
+    i=i+1
+    contribs = links.join(ranks).flatMap(
+                lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
+    new_ranks_b = contribs.reduceByKey(add).mapValues(lambda rank: round(rank *b_persen + (1-b_persen),12))
+            
+    new =ranks.join(new_ranks_b)
+            
+    b_result = new.map(lambda x: abs(x[1][0] - x[1][1])).collect()
+            
+
+    sranks = new_ranks_b
     if(int(sys.argv[2]) == 0):
-        while(max(result)>0.0001):
+        while(not(max(b_result)<0.0001)):
             
             i=i+1
             contribs = links.join(ranks).flatMap(
                 lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
+            new_ranks_b = contribs.reduceByKey(add).mapValues(lambda rank: round(rank *b_persen + (1-b_persen),12))
             
-            if(int(sys.argv[3]) == 0):
-                ranks_New = contribs.reduceByKey(add).mapValues(lambda rank: round(rank * 0.80 + 0.20,12))
-            else:
-                ranks_New = contribs.reduceByKey(add).mapValues(lambda rank: round(rank *per + (1-per),12))
-            r = [rank for (link, rank) in ranks_New.collect()]
-            new =ranks.join(ranks_New)
-            result = [abs(p[0]-p[1]) for (b,p) in new.collect() ]
-            ranks = ranks_New
+            new =ranks.join(new_ranks_b)
+            
+            b_result = new.map(lambda x: abs(x[1][0] - x[1][1])).collect()
+            
+
+            ranks = new_ranks_b
             
     else:
         for iteration in range(int(sys.argv[2])):
             contribs = links.join(ranks).flatMap(
                 lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
-            if(per== 0):
-                ranks = contribs.reduceByKey(add).mapValues(lambda rank: round(rank * 0.80 + 0.20,12))
-            else:
-                ranks = contribs.reduceByKey(add).mapValues(lambda rank: round(rank *per + (1-per),12))
-        i = int(sys.argv[2])    
-    ranks_New = ranks.sortBy(lambda a : -a[1])
-    for (link, rank) in ranks_New.collect():
-        print("%s has rank: %s." % (link, rank))
-    print("iteration = ",i)
+            ranks = contribs.reduceByKey(add).mapValues(lambda rank: round(rank *b_persen + (1-b_persen),12))
+        i = int(sys.argv[2])  
+    ranks = ranks.sortBy(lambda a : a[0])  
+    new_ranks_b = ranks.sortBy(lambda a : -a[1])
+    for (link, rank) in new_ranks_b.collect():
+        print("%s,%s" % (link, rank))
+    
     
     spark.stop()

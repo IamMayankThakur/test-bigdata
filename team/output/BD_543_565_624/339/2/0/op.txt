@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_N6RObnr.py", line 87
+    chk=0
+        ^
+TabError: inconsistent use of tabs and spaces in indentation

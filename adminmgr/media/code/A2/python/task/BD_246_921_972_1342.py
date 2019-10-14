@@ -12,6 +12,10 @@ def computeContribs(urls, rank):
     for url in urls:
         yield (url[0], rank / num_urls)
 
+def diff_fn(x):
+    if(abs(float(x[1][0])-float(x[1][1]))<0.0001):
+        return(True)
+
 
 def parseNeighbors(pair):
     parts = re.split(r',', pair)
@@ -63,36 +67,37 @@ if __name__ == "__main__":
         #diff=list(map(lambda x,y:abs(x[1]-y[1]),ranks.collect(),interranks.collect()))
         #convergence=filter(lambda x: x<0.00001,diff)
 
-        r = list(ranks.collect())
-        i_r=list(intermediate_rank.collect())
+        # lists
+        r = ranks.join(intermediate_rank).map(lambda x: diff_fn(x)).reduce(lambda x,y:x and y)
 
-        i=0
-        while i<len(r):
-            if(abs(r[i][1]-i_r[i][1])<0.0001):
-                i+=1
-                continue
-            else:
-                break
-
-        if(i==len(r)):
+        if(r==True):
             x=0
 
-        else:
-            ranks=intermediate_rank
+        # i=0
+        # while i<len(r):
+            # if(abs(r[i][1]-i_r[i][1])<0.0001):
+                # i+=1
+                # continue
+            # else:
+                # break
 
+        # if(i==len(r)):
+            # x=0
+
+        ranks=intermediate_rank
         j+=1
 
+    # lists
+    ranks=ranks.sortBy(lambda x:(-x[1],x[0]),ascending=True)
+    # r=sorted(r,key=lambda x:(-x[1],x[0]),reverse=False)
 
-    r=list(ranks.collect())
-    r=sorted(r,key=lambda x:(-x[1],x[0]),reverse=False)
+    # filename=open('/home/kishan/Desktop/out.txt','w')
 
-    #filename=open('/home/kishan/Desktop/out.txt','w')
-
-    for (link, rank) in r:
-        #filename.write("%s,%.12f\n" % (link, rank))
+    for (link, rank) in ranks.collect():
+        # filename.write("%s,%.12f\n" % (link, rank))
         print("%s,%.12f" % (link, rank))
 
-    #print("NUMBER OF ITERATIONS:",j)
+    # print("NUMBER OF ITERATIONS:",j)
 
-    #filename.close()
+    # filename.close()
     spark.stop()

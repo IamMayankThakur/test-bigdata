@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_186_281_1583_NwUP8et.py", line 78, in <module>
+    diff = abs(old_ranks[i][1] - new_ranks[i][1])
+IndexError: list index out of range

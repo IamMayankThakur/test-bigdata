@@ -25,7 +25,7 @@ def splitting(line):
 
 # if the difference between the elements of two RDDs is less than 0.0001 then, return 0 else return 1	
 def subt(a,b):
-	if(abs(a-b)<=0.0001):
+	if(abs(a-b)<0.0001):
 		return 0
 	else:
 		return 1

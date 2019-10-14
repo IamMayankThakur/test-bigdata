@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_188_1000_1767_6QkXCjV.py", line 39
+    some_value = 0.8
+                   ^
+TabError: inconsistent use of tabs and spaces in indentation

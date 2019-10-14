@@ -1,0 +1,5 @@
+<class 'generator'> <class 'str'>
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_649_692_1744_1808_dAzq5cU.py", line 163, in <module>
+    if ((float(prevPlayerRank) - float(thisPlayerRank)) == 0.0):
+TypeError: float() argument must be a string or a number, not 'generator'

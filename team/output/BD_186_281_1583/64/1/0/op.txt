@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_186_281_1583_cQVYImO.py", line 135, in <module>
+    for (bowler,rank) in sorted_output:
+TypeError: 'PipelinedRDD' object is not iterable

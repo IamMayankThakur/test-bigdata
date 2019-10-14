@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_0913_0171_1120_0113.py", line 37
+    r = rank1.reduceByKey((x,y) => x + y)
+                                 ^
+SyntaxError: invalid syntax

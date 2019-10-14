@@ -48,11 +48,11 @@ if __name__ == "__main__":
 	lines = spark.read.text(sys.argv[1]).rdd.map(lambda r: r[0])
 	#print(lines.collect())
 
-	links = lines.map(lambda urls: parseNeighbors2(urls)).distinct().groupByKey().cache()
+	links = lines.map(lambda urls: parseNeighbors2(urls)).distinct().groupByKey()
 
-	ranks_prev1 = lines.map(lambda urls: parseNeighbors(urls)).distinct().reduceByKey(lambda a,b: a+b).cache()
+	ranks_prev1 = lines.map(lambda urls: parseNeighbors(urls)).distinct().reduceByKey(lambda a,b: a+b)
 
-	ranks_prev = ranks_prev1.mapValues(lambda x: x if x>1 else 1).cache()
+	ranks_prev = ranks_prev1.mapValues(lambda x: x if x>1 else 1)
 
 	#ranks_prev = links.map(lambda url_neighbors: (url_neighbors[0], 1.0))
 	i=1

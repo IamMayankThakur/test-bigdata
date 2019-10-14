@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_665_725_962_1hwc82v.py", line 50, in <module>
+    for iteration in range(int(sys.argv[1])):
+ValueError: invalid literal for int() with base 10: 'file:///home/ubuntu/test-bigdata/adminmgr/sparktestmgr/Datasets/2/1.txt'

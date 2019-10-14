@@ -34,6 +34,8 @@ if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: pagerank <file> <iterations>", file=sys.stderr)
         sys.exit(-1)
+    if int(sys.argv[2])<0 or int(sys.argv[3])<0 :
+    	sys.exit(-1)
 
     # Initialize the spark context.
     spark = SparkSession\
@@ -49,7 +51,10 @@ if __name__ == "__main__":
     ranks=initialrank.map(lambda player_avg:calsumofavg(player_avg))
     allbatsman=lines.map(lambda urls: allbatsman(urls)).distinct()
     allbowler=lines.map(lambda urls: allbowler(urls)).distinct()
-    lazybowlers=allbatsman.subtract(allbowler) 
+    lazybowlers=allbatsman.subtract(allbowler)
+    rankslazy = lazybowlers.map(lambda lazy: (lazy[0], 1))
+    ranks=ranks.union(rankslazy)
+     
     #k=links.collect()
     #for i in k:
     #	print(i[0],list(i[1]))

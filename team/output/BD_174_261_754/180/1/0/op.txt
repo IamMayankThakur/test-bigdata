@@ -1,0 +1,2 @@
+WARN: This is a naive implementation of PageRank and is given as an example!
+Please refer to PageRank implementation provided by graphx

@@ -1,0 +1,82 @@
++------------+------+-------+----------+-------------------+
+|     Batsman|Bowler|Wickets|Deliveries|            bowlAvg|
++------------+------+-------+----------+-------------------+
+|   LR Shukla|Z Khan|      2|         7| 0.2857142857142857|
+|     OA Shah|Z Khan|      2|         8|               0.25|
+|   JP Duminy|Z Khan|      2|        10|                0.2|
+|Yuvraj Singh|Z Khan|      2|        12|0.16666666666666666|
+|  MP Stoinis|Z Khan|      1|         6|0.16666666666666666|
+|   MD Mishra|Z Khan|      1|         6|0.16666666666666666|
+|  MA Agarwal|Z Khan|      1|         6|0.16666666666666666|
+|JEC Franklin|Z Khan|      1|         6|0.16666666666666666|
+|    MS Dhoni|Z Khan|      7|        43|0.16279069767441862|
+|    W Jaffer|Z Khan|      1|         7|0.14285714285714285|
+|  SC Ganguly|Z Khan|      2|        14|0.14285714285714285|
+|   PP Chawla|Z Khan|      1|         8|              0.125|
+|  MJ Guptill|Z Khan|      1|         9| 0.1111111111111111|
+|  MEK Hussey|Z Khan|      4|        36| 0.1111111111111111|
+|   RS Bopara|Z Khan|      1|        10|                0.1|
+|   IK Pathan|Z Khan|      2|        20|                0.1|
+|     N Saini|Z Khan|      1|        12|0.08333333333333333|
+| LMP Simmons|Z Khan|      1|        12|0.08333333333333333|
+|  EJG Morgan|Z Khan|      1|        12|0.08333333333333333|
+|    S Dhawan|Z Khan|      4|        50|               0.08|
++------------+------+-------+----------+-------------------+
+only showing top 20 rows
+
++---------------+-------------------+--------+
+|         Bowler|           sumOfAvg|refCount|
++---------------+-------------------+--------+
+| A Ashish Reddy| 0.5822802197802198|      13|
+|     A Chandila| 0.6325757575757576|      17|
+|    A Choudhary|                0.0|       6|
+|    A Dananjaya|                0.0|       2|
+|     A Flintoff|                0.0|       4|
+|       A Kumble| 2.6938640661701903|      58|
+|       A Mishra|   6.27297169579741|     118|
+|       A Mithun|0.23376623376623376|      24|
+|        A Nehra| 4.7035268345751255|     102|
+|          A Nel|                0.0|       1|
+|        A Singh|  1.105515297906602|      34|
+|      A Symonds| 1.0138199219081572|      37|
+|       A Uniyal|                0.0|       2|
+|        A Zampa| 1.0484126984126982|      17|
+|      AA Chavan|0.31495726495726495|      19|
+|AA Jhunjhunwala|0.06666666666666667|       7|
+|        AA Kazi|                0.0|       1|
+|      AA Noffke|                0.0|       1|
+|     AB Agarkar|  1.517563566701498|      52|
+|       AB Dinda|  3.203716380478242|      90|
++---------------+-------------------+--------+
+only showing top 20 rows
+
++--------------+--------------+--------+--------+
+|        Bowler|       Batsman|sumOfAvg|refCount|
++--------------+--------------+--------+--------+
+|A Ashish Reddy|AB de Villiers|     1.0|      13|
+|A Ashish Reddy| Azhar Mahmood|     1.0|      13|
+|A Ashish Reddy|     DA Miller|     1.0|      13|
+|A Ashish Reddy|     DA Warner|     1.0|      13|
+|A Ashish Reddy|  F du Plessis|     1.0|      13|
+|A Ashish Reddy|     G Gambhir|     1.0|      13|
+|A Ashish Reddy|      MS Dhoni|     1.0|      13|
+|A Ashish Reddy| Mandeep Singh|     1.0|      13|
+|A Ashish Reddy|    RV Uthappa|     1.0|      13|
+|A Ashish Reddy|     SPD Smith|     1.0|      13|
+|A Ashish Reddy|     SS Tiwary|     1.0|      13|
+|A Ashish Reddy|    TM Dilshan|     1.0|      13|
+|A Ashish Reddy|       V Kohli|     1.0|      13|
+|    A Chandila|AB de Villiers|     1.0|      17|
+|    A Chandila|  AC Gilchrist|     1.0|      17|
+|    A Chandila|      CH Gayle|     1.0|      17|
+|    A Chandila|   CJ Ferguson|     1.0|      17|
+|    A Chandila|      DR Smith|     1.0|      17|
+|    A Chandila|     JP Duminy|     1.0|      17|
+|    A Chandila|    MEK Hussey|     1.0|      17|
++--------------+--------------+--------+--------+
+only showing top 20 rows
+
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_649_692_1744_1808_F9Xvnoi.py", line 117, in <module>
+    thisPlayerRank = "%.4f" % thisPlayerRankList[0]
+IndexError: list index out of range

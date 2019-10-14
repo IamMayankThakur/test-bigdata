@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_212_945_952_xK37ZDe.py", line 92, in <module>
+    c=c+1
+NameError: name 'c' is not defined

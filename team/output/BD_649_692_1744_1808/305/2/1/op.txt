@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_649_692_1744_1808_KqtGai2.py", line 154, in <module>
+    for (link, rank) in sranks.sortByKey().collect():
+NameError: name 'sranks' is not defined

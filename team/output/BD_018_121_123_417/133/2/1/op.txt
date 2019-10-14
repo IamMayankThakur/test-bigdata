@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_018_121_123_417_BRlu1jY.py", line 13
+    yield (url,float(rank)/float(num_urls))
+                                          ^
+TabError: inconsistent use of tabs and spaces in indentation

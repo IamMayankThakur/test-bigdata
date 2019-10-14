@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_772_700_1404_2.py", line 58
+    from __future__ import print_function
+    ^
+SyntaxError: from __future__ imports must occur at the beginning of the file

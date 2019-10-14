@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_649_692_1744_1808_2QrlAco.py", line 155, in <module>
+    thisPlayerRank = "%.4f" % thisPlayerRankList
+TypeError: must be real number, not generator

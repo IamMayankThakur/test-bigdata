@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_772_700_1404_3.py", line 16
+    yield(n, current_rank/batsman_number)
+        ^
+IndentationError: expected an indented block

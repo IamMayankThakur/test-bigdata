@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_543_565_624_1HMwTUH.py", line 101, in <module>
+    if(abs(float(i[1])- d[i[0]])>0.0001):
+KeyError: 'Sandeep Sharma'

@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
 	spark = SparkSession.builder.appName("bowlerRank").getOrCreate()
 
-	filename = sys.argv[3]	#input dataset
+	filename = sys.argv[1]	#input dataset
 
 	lines = spark.read.text(filename).rdd.map(lambda r: r[0])
 
@@ -72,16 +72,16 @@ if __name__ == "__main__":
 	calc_weight = 0.80
 
 	# weight argument
-	if(int(sys.argv[2]) != 0):
-		calc_weight = (int(sys.argv[2]))/100
+	if(int(sys.argv[3]) != 0):
+		calc_weight = (int(sys.argv[3]))/100
 
 
 	#print("\n\nCALC WEIGHT: ",calc_weight,"\n\n")
 
 	# For Iterative computation
-	if(int(sys.argv[1]) > 0):
+	if(int(sys.argv[2]) > 0):
 
-		for i in range(int(sys.argv[1])):
+		for i in range(int(sys.argv[2])):
 
 			contribs = links.join(ranks).flatMap(lambda x: computeContribs(x))
 

@@ -31,7 +31,7 @@ def check(ranks1, ranks2):
     for (link, rank) in ranks2.collect():
         l2.append(rank)
     for i in range(l):
-        if(round(abs(l1[i]-l2[i]), 4) > 0.0001):
+        if(abs(l1[i]-l2[i]) >= 0.0001):
             v = False
             #print("stop", round(abs(l1[i]-l2[i]), 4), round(abs(l1[i]-l2[i]), 4) > 0.0001, i)
             break

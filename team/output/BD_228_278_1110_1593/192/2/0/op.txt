@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_228_278_1110_1593_ZytlEPv.py", line 43
+    if(x>0):
+           ^
+TabError: inconsistent use of tabs and spaces in indentation

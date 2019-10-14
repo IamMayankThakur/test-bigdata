@@ -26,7 +26,7 @@ if __name__ == "__main__":
     cumulativerates = bowlingrates.reduceByKey(lambda x, y : x + y)
     ranks = cumulativerates.map(lambda x : (x[0], max(x[1], 1)))
 
-    links = lines.map(lambda combo : (combo[0], combo[1])).distinct().groupByKey().partitionBy(2).cache()
+    links = lines.map(lambda combo : (combo[0], combo[1])).distinct().groupByKey().partitionBy(2)
     n_iters = int(sys.argv[2])
     calc_weight = int(sys.argv[3])
 

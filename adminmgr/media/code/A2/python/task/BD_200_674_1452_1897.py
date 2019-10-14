@@ -33,6 +33,7 @@ if __name__ == "__main__":
 
     ranks1 = lines.map(lambda x:( x.split(",")[1],float(x.split(",")[2])/float(x.split(",")[3]))).distinct().groupByKey().cache()
     ranks3 = ranks1.map(lambda x:(x[0],max(sum(x[1]),1.00)))
+    count2 = 0
 
     if(int(sys.argv[2])!=0):
         for i in range(int(sys.argv[2])):
@@ -51,11 +52,12 @@ if __name__ == "__main__":
                 if(round(i[1][0],4)==round(i[1][1],4)):
                     count1 = count1+1
             if(count1==ranks3.count()):
-                print(count1,ranks3.count())
                 stop = 1 
-            #print(stop)
+            count2 = count2+1
+             
 
     for (x,y) in ranks3.sortBy(lambda x:(-x[1],x[0])).collect():
+        #print(count2)
         print("%s,%.12f"%(x,y))
 
     spark.stop()

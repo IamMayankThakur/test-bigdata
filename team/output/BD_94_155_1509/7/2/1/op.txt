@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_94_155_1509.py", line 34, in <module>
+    first=sys.argv[3]*0.01
+TypeError: can't multiply sequence by non-int of type 'float'

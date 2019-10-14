@@ -11,7 +11,7 @@ from pyspark.sql import *
 def calcRank(BatBowl, rank):
     n = len(BatBowl)
     for i in BatBowl:
-        yield (i, rank/n)
+        yield (i, float(rank)/float(n))
 
 
 
@@ -36,17 +36,14 @@ if __name__ == "__main__" :
         sys.exit(-1)
 
 
-    spark = SparkSession\
-        .builder\
-        .appName("Bowlerrank")\
-        .getOrCreate()
+    spark = SparkSession.builder.appName("Bowlerrank").getOrCreate()
 
 
 
     lol = spark.read.text(sys.argv[1]).rdd.map(lambda x : x[0])
 
     lol2 = lol.map(lambda x: batbowlKeyValue(x)).distinct().groupByKey().cache()
-    lol_temp = lol.map(lambda x: batbowlRank(x)).distinct().groupByKey().cache()
+    lol_temp = lol.map(lambda x: batbowlRank(x)).distinct().groupByKey()
 
     bowr = lol_temp.map(lambda x : (x[0], max(sum(x[1]),1.00)))
     itcount = 0
@@ -69,7 +66,7 @@ if __name__ == "__main__" :
             temp2 = temp.collect()
             flag = 0
             for i in temp2:
-                if(round(i[1][0],4) == round(i[1][1],4)):
+                if(abs(i[1][0]-i[1][1])<0.0001):
                     flag = flag + 1
                 else:
                     break
@@ -98,11 +95,10 @@ if __name__ == "__main__" :
     bowr = bowr.sortBy(lambda x : (-x[1],x[0]))
 
     for wolverine, iron_man in bowr.collect():
-        print("%s,%s" % (wolverine, iron_man))
+        print("%s,%.12f" % (wolverine, iron_man))
 
     #print("...................................",itcount,"...............................................")
 
 
     spark.stop()
-
 

@@ -79,7 +79,7 @@ if __name__ == "__main__":
             prev_ranks = ranks
             ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * weight + (1-weight))
             ranks_joined = ranks.join(prev_ranks).mapValues(lambda q: abs(float(q[0]) - float(q[1]))).filter(lambda p:float(p[1]) < 0.0001)
-            filtered_ranks = len(ranks_joined.collect())
+            filtered_ranks = ranks_joined.count()
 
     
     final_ranks = ranks.sortBy(lambda a:(-a[1],a[0]))

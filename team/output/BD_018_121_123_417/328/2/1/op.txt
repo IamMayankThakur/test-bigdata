@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_018_121_123_417_odmpQZs.py", line 77, in <module>
+    prev.append(float(j))
+TypeError: float() argument must be a string or a number, not 'NoneType'

@@ -47,16 +47,16 @@ if __name__ == "__main__":
     inter_ranks = lines.map(lambda urls: avg(urls)).distinct().reduceByKey(add)
     ranks=inter_ranks.map(lambda x:(x[0],max(x[1],1))).sortBy(lambda x:(x[1],x[0]),False)
     #t = ranks.collect()
-    print(ranks)
+    #print(ranks)
     
 
-    print("RANKS:",ranks.collect())
+    #print("RANKS:",ranks.collect())
     #print(ranks.collect())
     if(int(sys.argv[2])!=0): #Non-convergence case:
         for iteration in range(int(sys.argv[2])):
             contribs = links.join(ranks).flatMap(lambda url_urls_rank: computeContribs(url_urls_rank[1][0], url_urls_rank[1][1]))
             #contribs.collect()
-            ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank*first + second)
+            ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank*first + second).sortBy(lambda x:(x[1],x[0]),False)
     else:
    
         conv=1.0
@@ -70,7 +70,7 @@ if __name__ == "__main__":
             #conv = conv +1
         
     for (link, rank) in ranks.collect():#sortBy(lambda x:(x[1],x[0]),False).collect():
-        print("%s has rank: %s." % (link, rank))
+        print("%s,%.14s" % (link, rank))
 
     #ranks.collect().sort(key = lambda x: x[1],reverse = True)
     #print(ranks.collect())

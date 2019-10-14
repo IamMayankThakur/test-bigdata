@@ -1,0 +1,1 @@
+/usr/bin/python3.6: can't open file '/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_0177_1116_1731_811_3kXfRu5.py': [Errno 2] No such file or directory

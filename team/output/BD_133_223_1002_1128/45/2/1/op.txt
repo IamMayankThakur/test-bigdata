@@ -1,0 +1,4 @@
+  File "/home/ubuntu/test-bigdata/adminmgr/media/code/A2/python/task/BD_133_223_1002_1128_mqs0qKA.py", line 68
+    elif((int(sys.argv[2])==0) and (int(sys.argv[3])!=0))):		#converge with specific weights
+                                                         ^
+SyntaxError: invalid syntax
