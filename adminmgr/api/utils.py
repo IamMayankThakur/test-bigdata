@@ -1,6 +1,6 @@
 import pdb
 from django.db.models import Max
-from api.models import SubmissionAssignmentOne, Team
+from api.models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo
 import csv
 import pandas as pd
 from celery import shared_task
@@ -45,14 +45,14 @@ def port_csv_to_db():
 
 
 def get_max_marks():
-    s1 = list(SubmissionAssignmentOne.objects.values(
+    s1 = list(SubmissionAssignmentTwo.objects.values(
         'team__team_name').annotate(Max('score_1')))
-    s2 = list(SubmissionAssignmentOne.objects.values(
+    s2 = list(SubmissionAssignmentTwo.objects.values(
         'team__team_name').annotate(Max('score_2')))
-    s3 = list(SubmissionAssignmentOne.objects.values(
-        'team__team_name').annotate(Max('score_3')))
-    s4 = list(SubmissionAssignmentOne.objects.values(
-        'team__team_name').annotate(Max('score_4')))
+    # s3 = list(SubmissionAssignmentOne.objects.values(
+    #     'team__team_name').annotate(Max('score_3')))
+    # s4 = list(SubmissionAssignmentOne.objects.values(
+    #     'team__team_name').annotate(Max('score_4')))
 
     all_rows = []
     team_usn_mapping = {}
@@ -79,8 +79,8 @@ def get_max_marks():
         for usn in usn_list:
             print(usn)
             all_rows.append([usn[0], usn[2], usn[1], s1[i]['score_1__max'],
-                             s2[i]['score_2__max'], s3[i]['score_3__max'],
-                             s4[i]['score_4__max'], s1[i]['team__team_name']])
+                            #  s2[i]['score_2__max'], s3[i]['score_3__max'],
+                             s2[i]['score_2__max'], s1[i]['team__team_name']])
     with open('individual_marks_test.csv', 'w') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerows(all_rows)
@@ -118,16 +118,17 @@ def send_plagiarism_mail():
                  'BD_498_957_959',
                  'BD_1348_1576_1597',
                  'BD_444_459_489']
+    ass2_list = ['BD_2384_2390_2412', 'BD_444_459_489']
     message = MIMEMultipart("alternative")
     message["Subject"] = "Meet KVS Sir"
     message["From"] = "noreplybigdata@gmail.com"
 
-    html = "Hi, <br> Please meet KVS Sir ASAP without fail. This is in lieu of the plagiarism report. It is better to meet him with your complete team along with the team you had a plagiarism match with."
+    html = "Hi, <br> Please meet KVS Sir ASAP without fail, you can also meet him in class tomorrow.<br> This is in lieu of the plagiarism report. It is better to meet him with your complete team along with the team you had a plagiarism match with."
 
     part = MIMEText(html, "html")
     message.attach(part)
     _send("mayankthakur@pesu.pes.edu", message)
-    for team_name in ass1_list:
+    for team_name in ass2_list:
         try:
             team = Team.objects.get(team_name=team_name)
             emails = [team.member_1, team.member_2,
