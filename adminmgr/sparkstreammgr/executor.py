@@ -91,7 +91,7 @@ def execute_task2(submission):
     setters_path_2 = os.path.join(
         BASE_PATH, SETTERS_BASE_PATH, "t2s1_2.txt")
     os.makedirs(result_path, exist_ok=True)
-    runappcmd = "python3 ~/app.py"
+    runappcmd = "python3 ~/app.py &"
     runcmd = "python3.6 "+submission.code_file_task_1.path + " 2 1" \
         " > "+result_path+"/t2s1.output"
     diffcmd = "diff -wBZ "+result_path+"/t2s1.output "+setters_path
@@ -129,7 +129,7 @@ def execute_task2(submission):
     setters_path_2 = os.path.join(
         BASE_PATH, SETTERS_BASE_PATH, "t2s2_2.txt")
     os.makedirs(result_path, exist_ok=True)
-    runappcmd = "python3 ~/app.py"
+    runappcmd = "python3 ~/app.py &"
     runcmd = "python3.6 "+submission.code_file_task_1.path + " 1 1" \
         " > "+result_path+"/t2s2.output"
     diffcmd = "diff -wBZ "+result_path+"/t2s2.output "+setters_path
