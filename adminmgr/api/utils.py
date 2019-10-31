@@ -8,6 +8,7 @@ from celery import shared_task
 from notifymgr.mail import send_mail, _send
 # from testmgr.executecode import exe
 from sparktestmgr.sparkcodeexecutor import exe
+from sparkstreammgr.executor import execute
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -23,6 +24,12 @@ def run_assignment_one(submission_id):
 def run_assignment_two(submission_id):
     exe(submission_id=submission_id)
     send_mail(submission_id, 2)
+    print("Submisssion Evaluation Complete")
+
+@shared_task
+def run_assignment_three(submission_id):
+    execute(submission_id=submission_id)
+    send_mail(submission_id, 3)
     print("Submisssion Evaluation Complete")
 
 

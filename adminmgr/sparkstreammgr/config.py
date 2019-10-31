@@ -1,0 +1,5 @@
+BASE_PATH = "/home/ubuntu/test-bigdata/adminmgr/sparkstreammgr"
+SPARK_BASE_PATH = "/opt/spark/spark-2.4.4-bin-hadoop2.7/bin/spark-submit"
+TEAM_BASE_PATH = "/home/ubuntu/test-bigdata/team/output"
+DATASET_BASE_PATH = "Datasets"
+SETTERS_BASE_PATH = "Setters-Output"

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 import os
-
+from django.utils import timezone
 
 class OverwriteStorage(FileSystemStorage):
 
@@ -17,6 +17,7 @@ class Team(models.Model):
     member_2 = models.CharField(max_length=128, unique=True, blank=True)
     member_3 = models.CharField(max_length=128, unique=False, blank=True)
     member_4 = models.CharField(max_length=128, unique=False, blank=True)
+    a3_full = models.BooleanField(default=False)
 
     def __str__(self):
         return self.team_name
@@ -64,3 +65,23 @@ class SubmissionAssignmentTwo(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class SubmissionAssignmentThree(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    submitted_on = models.DateTimeField(default=timezone.now)
+    code_file_task_1 = models.FileField(blank=False, upload_to='code/A3/task1')
+    code_file_task_2 = models.FileField(blank=False, upload_to='code/A3/task2')
+    code_file_task_3 = models.FileField(blank=False, upload_to='code/A3/task3')
+    score_1 = models.FloatField(default=-1)
+    score_2 = models.FloatField(default=-1)
+    remarks = models.TextField(null=True, blank=True, default="None")
+
+    def __str__(self):
+        return str(self.id)
+
+class SubmissionMtech(models.Model):
+    usn = models.CharField(max_length=14, blank=False)
+    file = models.FileField(blank=False, upload_to="code/Mtech/file")
+
+    def __str__(self):
+        return str(self.usn)
