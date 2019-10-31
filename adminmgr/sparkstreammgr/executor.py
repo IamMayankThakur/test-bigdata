@@ -101,6 +101,7 @@ def execute_task2(submission):
         time.sleep(5)
         run_code = os.system(runcmd)
         print("T2S1", runcmd)
+        time.sleep(10)
         # run_code = 0
         if run_code != 0:
             message += "Runtime Error<br>"
@@ -138,6 +139,7 @@ def execute_task2(submission):
         run_app = os.system(runappcmd)
         time.sleep(5)
         run_code = os.system(runcmd)
+        time.sleep(10)
         print("T2S2", runcmd)
         # run_code = 0
         if run_code != 0:
