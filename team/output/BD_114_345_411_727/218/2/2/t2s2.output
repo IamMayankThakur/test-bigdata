@@ -1,0 +1,13 @@
+WorldCup,ESPRUS,ESP,worldcup,CRODEN
+WorldCup,worldcup,FRA,CRO,RUS
+WorldCup,worldcup,ESPRUS,RUS,CRO
+WorldCup,worldcup,ESPRUS,RUS,CRO
+WorldCup,CRO,worldcup,DEN,RUS
+WorldCup,ESP,CRO,ESPRUS,RUS
+WorldCup,worldcup,CRO,ESP,ESPRUS
+WorldCup,ESP,ESPRUS,RUS,worldcup
+WorldCup,CRO,ESPRUS,CRODEN,worldcup
+WorldCup,CRO,worldcup,CRODEN,DEN
+WorldCup,CRO,CRODEN,worldcup,DEN
+WorldCup,CRODEN,worldcup,CRO,ESPRUS
+WorldCup,CRO,ESPRUS,worldcup,ESP

@@ -1,0 +1,16 @@
+WorldCup,worldcup,ESP,ESPRUS,ESPRUS
+WorldCup,Escort,worldcup,FRA,FRA
+WorldCup,worldcup,ESPRUS,Escort,Escort
+WorldCup,worldcup,FRA,ESP,ESP
+WorldCup,Escort,ESPRUS,worldcup,worldcup
+WorldCup,Escort,ESPRUS,worldcup,worldcup
+WorldCup,ESPRUS,NadaNosDetiene,worldcup,worldcup
+WorldCup,worldcup,NadaNosDetiene,ESP,ESP
+WorldCup,worldcup,CRO,Russia,Russia
+WorldCup,worldcup,ESP,FRA,FRA
+WorldCup,CRO,ESPRUS,FRAARG,FRAARG
+WorldCup,CRO,worldcup,FRA,FRA
+WorldCup,CRO,worldcup,MOTM,MOTM
+WorldCup,ESPRUS,CRO,worldcup,worldcup
+WorldCup,worldcup,CRO,MOTM,MOTM
+WorldCup,MOTM,CRO,ESPRUS,ESPRUS
