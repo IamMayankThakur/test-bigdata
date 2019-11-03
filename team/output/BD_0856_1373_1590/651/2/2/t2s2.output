@@ -1,0 +1,11 @@
+WorldCup,ESPRUS,ESP,worldcup,CRODEN
+WorldCup,FRA,worldcup,CRO,RUS
+WorldCup,worldcup,CRO,DEN,RUS
+WorldCup,worldcup,ESPRUS,CRO,DEN
+WorldCup,worldcup,RUS,ESPRUS,CRO
+WorldCup,worldcup,ESPRUS,ESP,CRODEN
+WorldCup,worldcup,RUS,CRO,DEN
+WorldCup,DEN,CRO,worldcup,RUS
+WorldCup,CRO,ESPRUS,ESP,worldcup
+WorldCup,ESP,CRO,ESPRUS,RUS
+Error: <class 'py4j.protocol.Py4JJavaError'>
