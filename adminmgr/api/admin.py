@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-from .models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo, SubmissionAssignmentThree
+from .models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo, SubmissionAssignmentThree, SubmissionMtech
 
 # admin.site.unregister(User)
 # admin.site.unregister(Group)
@@ -14,5 +14,6 @@ class AssignmentAdmin(admin.ModelAdmin):
 
 admin.site.register(SubmissionAssignmentTwo, AssignmentAdmin)
 admin.site.register(Team)
+admin.site.register(SubmissionMtech)
 admin.site.register(SubmissionAssignmentOne, AssignmentAdmin)
 admin.site.register(SubmissionAssignmentThree, AssignmentAdmin)
