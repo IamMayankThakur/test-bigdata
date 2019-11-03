@@ -14,7 +14,9 @@ class Index(View):
 
 class CodeUploadAssignmentOne(View):
     def get(self, request):
-        return render(request, 'assignment1.html')
+        # return render(request, 'assignment1.html')
+        return HttpResponse("Submissions are closed")
+
 
     def post(self, request):
         try:
@@ -84,7 +86,8 @@ class CodeUploadAssignmentOne(View):
 class CodeUploadAssignmentTwo(View):
     def get(self, request):
         try:
-            return render(request, 'assignment2.html')
+            # return render(request, 'assignment2.html')
+            return HttpResponse("Submissions are closed")
         except Exception as e:
             return HttpResponse("Could not render. Contact mayankthakur@pesu.pes.edu")
 
@@ -123,7 +126,8 @@ class CodeUploadAssignmentTwo(View):
 class CodeUploadAssignmentThree(View):
     def get(self, request):
         try:
-            return render(request, 'assignment3.html')
+            # return render(request, 'assignment3.html')
+            return HttpResponse("Submissions are closed")
         except Exception as e:
             return HttpResponse("Could not render. Contact mayankthakur@pesu.pes.edu")
 
