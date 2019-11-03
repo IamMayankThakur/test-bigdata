@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team, SubmissionAssignmentThree
+from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team, SubmissionAssignmentThree, SubmissionMtech
 from .utils import run_assignment_one, run_assignment_two, run_assignment_three
 # from . import urls
 
@@ -166,3 +166,28 @@ class CodeUploadAssignmentThree(View):
             "Done. You will receive your results via an email. The submission id is " +
             str(submission.id)
             + ". Use this submission id to get in touch in case you dont get an email result.")
+
+class MtechUpload(View):
+    def get(self, request):
+        try:
+            return render(request, 'mtech.html')
+        except Exception as e:
+            return HttpResponse("Could not render. Contact mayankthakur@pesu.pes.edu")
+
+    def post(self, request):
+        try:
+            usn = request.POST["team_name"]
+            file = request.FILES["code_file_task_1"]
+        except IndexError as e:
+            return HttpResponse("Unable to accept submission. Enter valid details")
+        try:
+            submission = SubmissionMtech(
+                usn=usn,
+                file=file
+            )
+            submission.save()
+        except Exception as e:
+            print(e)
+            return HttpResponse("Could not accept submission, enter valid details")
+        return HttpResponse(
+            "Successfully Submitted")

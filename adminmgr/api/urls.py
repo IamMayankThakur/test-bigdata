@@ -7,4 +7,5 @@ urlpatterns = [
     path('assignment1', views.CodeUploadAssignmentOne.as_view()),
     path('assignment2', views.CodeUploadAssignmentTwo.as_view()),
     path('assignment3', views.CodeUploadAssignmentThree.as_view()),
+    path('mtech', views.MtechUpload.as_view()),
 ]

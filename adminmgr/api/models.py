@@ -80,7 +80,7 @@ class SubmissionAssignmentThree(models.Model):
         return str(self.id)
 
 class SubmissionMtech(models.Model):
-    usn = models.CharField(max_length=14, blank=False)
+    usn = models.CharField(max_length=18, blank=False)
     file = models.FileField(blank=False, upload_to="code/Mtech/file")
 
     def __str__(self):
