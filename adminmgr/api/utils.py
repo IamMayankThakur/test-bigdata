@@ -1,6 +1,6 @@
 import pdb
 from django.db.models import Max
-from api.models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo
+from api.models import SubmissionAssignmentOne, Team, SubmissionAssignmentTwo, SubmissionAssignmentThree
 import csv
 import pandas as pd
 from celery import shared_task
@@ -52,9 +52,9 @@ def port_csv_to_db():
 
 
 def get_max_marks():
-    s1 = list(SubmissionAssignmentTwo.objects.values(
+    s1 = list(SubmissionAssignmentThree.objects.values(
         'team__team_name').annotate(Max('score_1')))
-    s2 = list(SubmissionAssignmentTwo.objects.values(
+    s2 = list(SubmissionAssignmentThree.objects.values(
         'team__team_name').annotate(Max('score_2')))
     # s3 = list(SubmissionAssignmentOne.objects.values(
     #     'team__team_name').annotate(Max('score_3')))
@@ -88,7 +88,7 @@ def get_max_marks():
             all_rows.append([usn[0], usn[2], usn[1], s1[i]['score_1__max'],
                             #  s2[i]['score_2__max'], s3[i]['score_3__max'],
                              s2[i]['score_2__max'], s1[i]['team__team_name']])
-    with open('individual_marks_test.csv', 'w') as csvFile:
+    with open('marks_a3.csv', 'w') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerows(all_rows)
     csvFile.close()
