@@ -126,8 +126,8 @@ class CodeUploadAssignmentTwo(View):
 class CodeUploadAssignmentThree(View):
     def get(self, request):
         try:
-            return render(request, 'assignment3.html')
-            # return HttpResponse("Submissions are closed")
+            # return render(request, 'assignment3.html')
+            return HttpResponse("Submissions are closed")
         except Exception as e:
             return HttpResponse("Could not render. Contact mayankthakur@pesu.pes.edu")
 
