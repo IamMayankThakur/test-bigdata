@@ -1,7 +1,7 @@
 # test-bigdata
 Test framework for assignments in the Big Data course (UE17CS313).
 
-This project was used to evaluate hadoop, spark and spark streaming assignments for over 300 students at [PES University, Bangalore, India](pes.edu).
+This project was used to evaluate hadoop, spark and spark streaming assignments for over 300 students at [PES University, Bangalore, India](https://pes.edu).
 
 ## Setup
 
