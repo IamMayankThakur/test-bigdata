@@ -45,7 +45,6 @@ This project was used to evaluate hadoop, spark and spark streaming assignments 
 
 ### Developers
 
-* [Nishant Ravi Shankar ](https://github.com/mellon-collie)
 * [Mayank Thakur (Me)](https://github.com/IamMayankThakur)
-
+* [Nishant Ravi Shankar ](https://github.com/mellon-collie)
 * ### Thanks to Dr K V Subramaniam for the guidance.
