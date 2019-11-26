@@ -8,4 +8,5 @@ urlpatterns = [
     path('assignment2', views.CodeUploadAssignmentTwo.as_view()),
     path('assignment3', views.CodeUploadAssignmentThree.as_view()),
     path('mtech', views.MtechUpload.as_view()),
+    path('final_project', views.FinalProjectView.as_view()),
 ]

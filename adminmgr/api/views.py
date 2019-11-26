@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team, SubmissionAssignmentThree, SubmissionMtech
+from .models import SubmissionAssignmentOne, SubmissionAssignmentTwo, Team, SubmissionAssignmentThree, SubmissionMtech, FinalProject
 from .utils import run_assignment_one, run_assignment_two, run_assignment_three
 # from . import urls
 
@@ -190,6 +190,50 @@ class MtechUpload(View):
                 usn=usn,
                 file=file
             )
+            submission.save()
+        except Exception as e:
+            print(e)
+            return HttpResponse("Could not accept submission, enter valid details")
+        return HttpResponse(
+            "Successfully Submitted")
+
+class FinalProjectView(View):
+    def get(self, request):
+        try:
+            return render(request, 'final.html')
+            # return HttpResponse("Submission closed")
+        except Exception as e:
+            return HttpResponse("Could not render. Contact mayankthakur@pesu.pes.edu")
+
+    def post(self, request):
+        # import pdb
+        # pdb.set_trace()
+        try:
+            t_name = request.POST["team_name"]
+            file = request.FILES["code_tar_file"]
+            python = True if request.POST['python'] == "python" else False
+        except IndexError as e:
+            return HttpResponse("Unable to accept submission. Enter valid details")
+        try:
+            team = Team.objects.get(team_name=t_name)
+        except ObjectDoesNotExist as e:
+            return HttpResponse(
+                "Team doesnt exist. Enter the team name submitted in the project form. If you dont remember your"
+                + " team name, contact mayankthakur@pesu.pes.edu or any faculty immediately")
+        try:
+            if team.final_project_submitted is not True:
+                pass
+            else:
+                return HttpResponse("Already Submitted")
+        except Exception as e:
+            print(e)
+        try:
+            submission = FinalProject(
+                team=team,
+                code_tar_file=file
+            )
+            team.final_project_submitted = True
+            team.save()
             submission.save()
         except Exception as e:
             print(e)

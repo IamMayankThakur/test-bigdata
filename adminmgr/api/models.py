@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 import os
 from django.utils import timezone
 
+
 class OverwriteStorage(FileSystemStorage):
 
     def get_available_name(self, name, max_length=None):
@@ -18,6 +19,7 @@ class Team(models.Model):
     member_3 = models.CharField(max_length=128, unique=False, blank=True)
     member_4 = models.CharField(max_length=128, unique=False, blank=True)
     a3_full = models.BooleanField(default=False)
+    final_project_submitted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.team_name
@@ -28,10 +30,14 @@ class SubmissionAssignmentOne(models.Model):
     submitted_on = models.DateTimeField(auto_now=True)
     python = models.BooleanField(default=False)
     java = models.BooleanField(default=True)
-    code_config = models.FileField(blank=False, upload_to='code/config', storage=OverwriteStorage())
-    code_file_java_task_1 = models.FileField(blank=True, null=True, upload_to='code/java/1', storage=OverwriteStorage())
-    code_file_java_task_2 = models.FileField(blank=True, null=True, upload_to='code/java/2', storage=OverwriteStorage())
-    code_file_java_task_3 = models.FileField(blank=True, null=True, upload_to='code/java/3', storage=OverwriteStorage())
+    code_config = models.FileField(
+        blank=False, upload_to='code/config', storage=OverwriteStorage())
+    code_file_java_task_1 = models.FileField(
+        blank=True, null=True, upload_to='code/java/1', storage=OverwriteStorage())
+    code_file_java_task_2 = models.FileField(
+        blank=True, null=True, upload_to='code/java/2', storage=OverwriteStorage())
+    code_file_java_task_3 = models.FileField(
+        blank=True, null=True, upload_to='code/java/3', storage=OverwriteStorage())
     code_file_python_map_1 = models.FileField(blank=True, null=True, upload_to='code/python/map1',
                                               storage=OverwriteStorage())
     code_file_python_map_2 = models.FileField(blank=True, null=True, upload_to='code/python/map2',
@@ -58,13 +64,15 @@ class SubmissionAssignmentOne(models.Model):
 class SubmissionAssignmentTwo(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     submitted_on = models.DateTimeField(auto_now=True)
-    code_file_task_1 = models.FileField(blank=False, upload_to='code/A2/python/task')
+    code_file_task_1 = models.FileField(
+        blank=False, upload_to='code/A2/python/task')
     score_1 = models.FloatField(default=-1)
     score_2 = models.FloatField(default=-1)
     remarks = models.TextField(null=True, blank=True, default="None")
 
     def __str__(self):
         return str(self.id)
+
 
 class SubmissionAssignmentThree(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -79,9 +87,20 @@ class SubmissionAssignmentThree(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 class SubmissionMtech(models.Model):
     usn = models.CharField(max_length=18, blank=False)
     file = models.FileField(blank=False, upload_to="code/Mtech/file")
 
     def __str__(self):
         return str(self.usn)
+
+
+class FinalProject(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    submitted_on = models.DateTimeField(default=timezone.now)
+    code_tar_file = models.FileField(blank=False, upload_to='code/final')
+    remarks = models.TextField(null=True, blank=True, default="None")
+
+    def __str__(self):
+        return str(self.id)
