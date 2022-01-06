@@ -1,6 +1,6 @@
 amqp==2.5.0
 billiard==3.6.0.0
-celery==4.3.0
+celery==5.2.2
 Django==2.2.24
 kombu==4.6.3
 pytz==2019.2
